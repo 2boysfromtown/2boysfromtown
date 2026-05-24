@@ -44,7 +44,7 @@ Code: [`2boysfromtown/hyperframes-motion`](https://github.com/2boysfromtown/hype
 | Distribution | Telegram Managed Bots, WhatsApp automation |
 | Models | Claude (Anthropic), GPT, OSS where it makes sense |
 
-See [`projects/`](./projects) for one-pagers on each initiative.
+See [`projects/`](./projects) for one-pagers on each initiative, and [`templates/`](./templates) for starter scaffolds we use ourselves (Telegram bot wired to an OpenClaw skill).
 
 ---
 

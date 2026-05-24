@@ -1,0 +1,21 @@
+{
+  "name": "@2boysfromtown/telegram-bot-template",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Telegram managed bot template wired to an OpenClaw skill — by 2BFT (2 Boys From Town).",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "telegraf": "^4.16.3"
+  },
+  "author": "2boysfromtown",
+  "license": "MIT"
+}

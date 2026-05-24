@@ -1,0 +1,25 @@
+{
+  "name": "summarize_text",
+  "version": "0.1.0",
+  "description": "Summarize a block of text into N bullet points.",
+  "author": "2boysfromtown",
+  "entrypoint": "skill:handle",
+  "input_schema": {
+    "type": "object",
+    "required": ["text"],
+    "properties": {
+      "text": { "type": "string", "minLength": 1 },
+      "bullets": { "type": "integer", "minimum": 1, "maximum": 10, "default": 3 }
+    }
+  },
+  "output_schema": {
+    "type": "object",
+    "required": ["summary"],
+    "properties": {
+      "summary": {
+        "type": "array",
+        "items": { "type": "string" }
+      }
+    }
+  }
+}
