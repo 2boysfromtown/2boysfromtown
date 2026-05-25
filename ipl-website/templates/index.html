@@ -1,0 +1,280 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<!-- ── Hero ────────────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">IPL 2024 Season</div>
+    <h1 class="hero-title">
+      Mumbai Indians<br />
+      <span class="hero-title-accent">Five-Time Champions</span>
+    </h1>
+    <p class="hero-desc">The most successful franchise in IPL history. Blue se hai bond, Mumbai se hai rishta.</p>
+    <div class="hero-actions">
+      <a href="{{ url_for('players') }}" class="btn btn-primary">View Squad</a>
+      <a href="{{ url_for('matches') }}" class="btn btn-outline">Match Schedule</a>
+    </div>
+  </div>
+  <div class="hero-stats-bar">
+    <div class="hero-stat">
+      <span class="hero-stat-num">5</span>
+      <span class="hero-stat-label">IPL Titles</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">246</span>
+      <span class="hero-stat-label">Matches Played</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">58%</span>
+      <span class="hero-stat-label">Win Rate</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">2008</span>
+      <span class="hero-stat-label">Founded</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── Upcoming match + Countdown ───────────────────────────────────────── -->
+<section class="section upcoming-section">
+  <div class="container">
+    <div class="section-label">Next Up</div>
+    <h2 class="section-title">Upcoming Match</h2>
+
+    <div class="match-card-featured">
+      <div class="mcf-top">
+        <span class="mcf-tournament">IPL 2024 · Match 48 · League Stage</span>
+        <span class="mcf-broadcast">Star Sports / JioCinema</span>
+      </div>
+      <div class="mcf-teams">
+        <div class="mcf-team home">
+          <div class="mcf-team-badge mi-badge">MI</div>
+          <span class="mcf-team-name">Mumbai Indians</span>
+        </div>
+        <div class="mcf-vs">
+          <span>VS</span>
+          <div class="mcf-date-info">
+            <span id="matchDate">10 May 2024</span>
+            <span>7:30 PM IST</span>
+          </div>
+        </div>
+        <div class="mcf-team away">
+          <div class="mcf-team-badge csk-badge">CSK</div>
+          <span class="mcf-team-name">Chennai Super Kings</span>
+        </div>
+      </div>
+      <div class="mcf-venue">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Wankhede Stadium, Mumbai
+      </div>
+
+      <div class="countdown-wrap">
+        <p class="countdown-label">Match starts in</p>
+        <div class="countdown" id="matchCountdown">
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cdDays">--</span>
+            <span class="countdown-unit-label">Days</span>
+          </div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cdHours">--</span>
+            <span class="countdown-unit-label">Hours</span>
+          </div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cdMins">--</span>
+            <span class="countdown-unit-label">Mins</span>
+          </div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cdSecs">--</span>
+            <span class="countdown-unit-label">Secs</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Featured Players ─────────────────────────────────────────────────── -->
+<section class="section players-section bg-light">
+  <div class="container">
+    <div class="section-label">The Squad</div>
+    <h2 class="section-title">Featured Players</h2>
+    <div class="featured-players-grid">
+      {% for player in featured_players %}
+      <div class="featured-player-card">
+        <div class="fpc-header" style="--team-color: #003674;">
+          <span class="fpc-jersey">#{{ player.jersey }}</span>
+          <div class="fpc-avatar">
+            <span>{{ player.name.split()[0][0] }}{{ player.name.split()[-1][0] }}</span>
+          </div>
+        </div>
+        <div class="fpc-body">
+          <div class="fpc-meta">
+            <h3 class="fpc-name">
+              {{ player.name }}
+              {% if player.is_captain %}<span class="captain-badge">C</span>{% endif %}
+              {% if player.is_vice_captain %}<span class="vc-badge">VC</span>{% endif %}
+            </h3>
+            <span class="fpc-role">{{ player.role }}</span>
+          </div>
+          <div class="fpc-stats">
+            {% if player.role_type == 'bowler' %}
+            <div class="fpc-stat"><span class="fpc-stat-val">{{ player.ipl_wickets }}</span><span class="fpc-stat-key">Wickets</span></div>
+            <div class="fpc-stat"><span class="fpc-stat-val">{{ player.ipl_matches }}</span><span class="fpc-stat-key">Matches</span></div>
+            <div class="fpc-stat"><span class="fpc-stat-val">{{ player.ipl_bowl_avg if player.ipl_bowl_avg else '—' }}</span><span class="fpc-stat-key">Avg</span></div>
+            {% else %}
+            <div class="fpc-stat"><span class="fpc-stat-val">{{ player.ipl_runs }}</span><span class="fpc-stat-key">Runs</span></div>
+            <div class="fpc-stat"><span class="fpc-stat-val">{{ player.ipl_matches }}</span><span class="fpc-stat-key">Matches</span></div>
+            <div class="fpc-stat"><span class="fpc-stat-val">{{ player.ipl_avg }}</span><span class="fpc-stat-key">Avg</span></div>
+            {% endif %}
+          </div>
+          <a href="{{ url_for('players') }}" class="fpc-link">View Profile →</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="section-cta">
+      <a href="{{ url_for('players') }}" class="btn btn-outline">See Full Squad</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Latest News ───────────────────────────────────────────────────────── -->
+<section class="section news-preview-section">
+  <div class="container">
+    <div class="section-header-row">
+      <div>
+        <div class="section-label">Latest</div>
+        <h2 class="section-title">Team News</h2>
+      </div>
+      <a href="{{ url_for('news') }}" class="btn btn-sm btn-outline">All News →</a>
+    </div>
+
+    <div class="news-preview-grid">
+      <article class="news-card news-card-featured">
+        <div class="news-card-tag">Match Report</div>
+        <h3 class="news-card-title">Rohit, Bumrah shine as MI defeat RCB in a last-over thriller</h3>
+        <p class="news-card-excerpt">Rohit Sharma's 68 off 43 and Bumrah's 3/22 powered Mumbai Indians to a dominant seven-wicket victory over Royal Challengers Bengaluru at Wankhede, keeping their playoff hopes alive with a convincing display.</p>
+        <div class="news-card-meta">
+          <span>3 May 2024</span>
+          <a href="{{ url_for('news') }}" class="news-read-more">Read more →</a>
+        </div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-tag">Team Update</div>
+        <h3 class="news-card-title">Bumrah cleared to play after shoulder soreness scare</h3>
+        <p class="news-card-excerpt">The MI vice-captain has been passed fit for the upcoming CSK clash after routine precautionary rest.</p>
+        <div class="news-card-meta">
+          <span>5 May 2024</span>
+          <a href="{{ url_for('news') }}" class="news-read-more">Read →</a>
+        </div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-tag">Youth Update</div>
+        <h3 class="news-card-title">Tilak Varma named in India A squad — MI's pride</h3>
+        <p class="news-card-excerpt">Tilak's consistent performances for MI this season have earned him national recognition ahead of the T20 World Cup preparations.</p>
+        <div class="news-card-meta">
+          <span>4 May 2024</span>
+          <a href="{{ url_for('news') }}" class="news-read-more">Read →</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ── Trophies / Achievements ──────────────────────────────────────────── -->
+<section class="section achievements-section bg-light">
+  <div class="container">
+    <div class="section-label">Legacy</div>
+    <h2 class="section-title">Trophy Cabinet</h2>
+    <div class="trophies-grid">
+      <div class="trophy-item">
+        <div class="trophy-icon">🏆</div>
+        <span class="trophy-year">2013</span>
+        <span class="trophy-label">IPL Champions</span>
+      </div>
+      <div class="trophy-item">
+        <div class="trophy-icon">🏆</div>
+        <span class="trophy-year">2015</span>
+        <span class="trophy-label">IPL Champions</span>
+      </div>
+      <div class="trophy-item">
+        <div class="trophy-icon">🏆</div>
+        <span class="trophy-year">2017</span>
+        <span class="trophy-label">IPL Champions</span>
+      </div>
+      <div class="trophy-item">
+        <div class="trophy-icon">🏆</div>
+        <span class="trophy-year">2019</span>
+        <span class="trophy-label">IPL Champions</span>
+      </div>
+      <div class="trophy-item">
+        <div class="trophy-icon">🏆</div>
+        <span class="trophy-year">2020</span>
+        <span class="trophy-label">IPL Champions</span>
+      </div>
+      <div class="trophy-item secondary">
+        <div class="trophy-icon">🥈</div>
+        <span class="trophy-year">2010, 2014</span>
+        <span class="trophy-label">Runners-up</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Fan Zone Teaser ───────────────────────────────────────────────────── -->
+<section class="section fanzone-teaser-section">
+  <div class="container">
+    <div class="fanzone-teaser">
+      <div class="fanzone-teaser-text">
+        <div class="section-label">Community</div>
+        <h2 class="section-title" style="margin-top:0.25rem;">Join the Paltan</h2>
+        <p>Vote in fan polls, leave your thoughts in the comment wall, and connect with fellow MI fans from across the world. Aao Wankhede!</p>
+        <a href="{{ url_for('fans') }}" class="btn btn-primary">Go to Fan Zone</a>
+      </div>
+      <div class="fanzone-teaser-stat-box">
+        <div class="fanzone-big-stat">47K+</div>
+        <p>Fan comments &amp; votes this season</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  // Countdown to next match: 2024-05-10 19:30 IST (UTC+5:30)
+  const matchTime = new Date('2024-05-10T19:30:00+05:30').getTime();
+
+  function updateCountdown() {
+    const now = Date.now();
+    const diff = matchTime - now;
+
+    if (diff <= 0) {
+      document.getElementById('matchCountdown').innerHTML = '<span class="countdown-live">LIVE NOW</span>';
+      return;
+    }
+
+    const days  = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins  = Math.floor((diff % 3600000)  / 60000);
+    const secs  = Math.floor((diff % 60000)    / 1000);
+
+    document.getElementById('cdDays').textContent  = String(days).padStart(2, '0');
+    document.getElementById('cdHours').textContent = String(hours).padStart(2, '0');
+    document.getElementById('cdMins').textContent  = String(mins).padStart(2, '0');
+    document.getElementById('cdSecs').textContent  = String(secs).padStart(2, '0');
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
+{% endblock %}

@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block title %}Squad{% endblock %}
+{% block meta_desc %}Full Mumbai Indians squad for IPL 2024 — player profiles, roles, and statistics.{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+  <div class="container">
+    <p class="page-header-breadcrumb"><a href="/">Home</a> / Players</p>
+    <h1 class="page-header-title">The Squad</h1>
+    <p class="page-header-desc">IPL 2024 · {{ players|length }} players</p>
+  </div>
+</div>
+
+<!-- ── Filters ───────────────────────────────────────────────────────────── -->
+<section class="section players-section">
+  <div class="container">
+    <div class="players-controls">
+      <div class="search-wrap">
+        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" id="playerSearch" class="search-input" placeholder="Search players…" autocomplete="off" />
+      </div>
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="batsman">Batters</button>
+        <button class="filter-btn" data-filter="bowler">Bowlers</button>
+        <button class="filter-btn" data-filter="allrounder">All-rounders</button>
+      </div>
+      <div class="nationality-filter">
+        <select id="nationalityFilter" class="select-filter">
+          <option value="all">All Nationalities</option>
+          <option value="Indian">Indian</option>
+          <option value="Overseas">Overseas</option>
+        </select>
+      </div>
+    </div>
+
+    <p class="players-count" id="playersCount">Showing {{ players|length }} players</p>
+
+    <!-- Player cards grid — data attrs used by JS filter -->
+    <div class="players-grid" id="playersGrid">
+      {% for player in players %}
+      <div class="player-card"
+           data-role="{{ player.role_type }}"
+           data-nationality="{{ 'Indian' if player.nationality == 'Indian' else 'Overseas' }}"
+           data-name="{{ player.name | lower }}">
+        <div class="player-card-top">
+          <div class="player-avatar">
+            <span>{{ player.name.split()[0][0] }}{{ player.name.split()[-1][0] }}</span>
+          </div>
+          <span class="player-jersey">#{{ player.jersey }}</span>
+        </div>
+
+        <div class="player-card-body">
+          <div class="player-name-wrap">
+            <h3 class="player-name">{{ player.name }}</h3>
+            {% if player.is_captain %}
+            <span class="badge badge-captain">C</span>
+            {% endif %}
+            {% if player.is_vice_captain %}
+            <span class="badge badge-vc">VC</span>
+            {% endif %}
+          </div>
+          <span class="player-role-tag role-{{ player.role_type }}">{{ player.role }}</span>
+          <span class="player-nationality">{{ player.nationality }}</span>
+
+          <div class="player-stats-row">
+            {% if player.role_type == 'bowler' %}
+            <div class="pstat">
+              <span class="pstat-val">{{ player.ipl_matches }}</span>
+              <span class="pstat-key">Mat</span>
+            </div>
+            <div class="pstat">
+              <span class="pstat-val">{{ player.ipl_wickets }}</span>
+              <span class="pstat-key">Wkts</span>
+            </div>
+            <div class="pstat">
+              <span class="pstat-val">{{ '%.2f'|format(player.ipl_bowl_avg) if player.ipl_bowl_avg else '—' }}</span>
+              <span class="pstat-key">Avg</span>
+            </div>
+            <div class="pstat">
+              <span class="pstat-val">{{ '%.2f'|format(player.ipl_economy) if player.ipl_economy else '—' }}</span>
+              <span class="pstat-key">Eco</span>
+            </div>
+            {% else %}
+            <div class="pstat">
+              <span class="pstat-val">{{ player.ipl_matches }}</span>
+              <span class="pstat-key">Mat</span>
+            </div>
+            <div class="pstat">
+              <span class="pstat-val">{{ player.ipl_runs }}</span>
+              <span class="pstat-key">Runs</span>
+            </div>
+            <div class="pstat">
+              <span class="pstat-val">{{ '%.2f'|format(player.ipl_avg) }}</span>
+              <span class="pstat-key">Avg</span>
+            </div>
+            <div class="pstat">
+              <span class="pstat-val">{{ '%.1f'|format(player.ipl_sr) }}</span>
+              <span class="pstat-key">S/R</span>
+            </div>
+            {% endif %}
+          </div>
+
+          <!-- Expandable bio via JS -->
+          <div class="player-bio-toggle" data-bio="{{ player.bio }}">
+            <button class="bio-btn">Player Bio ↓</button>
+            <p class="player-bio hidden">{{ player.bio }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="no-results hidden" id="noResults">
+      <p>No players match your search. Try a different name or filter.</p>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/players.js') }}"></script>
+{% endblock %}

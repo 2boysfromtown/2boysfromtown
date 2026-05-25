@@ -1,0 +1,1707 @@
+/* ============================================================
+   Mumbai Indians Fan Portal — Main Stylesheet
+   Written by: Project Dev, 2024
+   ============================================================ */
+
+/* === CSS Variables ========================================= */
+:root {
+  --mi-blue:       #003674;
+  --mi-blue-dark:  #002456;
+  --mi-blue-mid:   #2c5282;
+  --mi-gold:       #D4AF37;
+  --mi-gold-light: #f0d978;
+  --mi-gold-dim:   #b8960e;
+
+  --bg-body:   #f4f5f7;
+  --bg-white:  #ffffff;
+  --bg-light:  #f0f2f5;
+
+  --text-dark:  #1a1a2e;
+  --text-mid:   #3d4a5c;
+  --text-muted: #667080;
+  --text-light: #94a3b8;
+
+  --border:       #dde2e8;
+  --border-light: #edf0f3;
+
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.05);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.10), 0 4px 8px rgba(0,0,0,0.06);
+
+  --radius-sm: 4px;
+  --radius:    8px;
+  --radius-lg: 12px;
+
+  --transition: 0.18s ease;
+}
+
+/* === Reset & Base ========================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg-body);
+  color: var(--text-dark);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Rajdhani', 'Inter', sans-serif;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--text-dark);
+}
+
+p { margin-bottom: 1rem; }
+p:last-child { margin-bottom: 0; }
+
+a { color: var(--mi-blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+img { max-width: 100%; display: block; }
+
+ul { list-style: none; }
+
+/* === Layout Utilities ====================================== */
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.section {
+  padding: 4rem 0;
+}
+
+.section.bg-light {
+  background: var(--bg-light);
+}
+
+.section-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mi-gold-dim);
+  margin-bottom: 0.4rem;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--text-dark);
+}
+
+.section-header-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 1.75rem;
+  gap: 1rem;
+}
+.section-header-row .section-title { margin-bottom: 0; }
+
+.section-cta {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+/* === Buttons =============================================== */
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.4rem;
+  border-radius: var(--radius-sm);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+  border: 2px solid transparent;
+  white-space: nowrap;
+  text-decoration: none;
+  line-height: 1.5;
+}
+.btn:hover { text-decoration: none; }
+
+.btn-primary {
+  background: var(--mi-blue);
+  color: #fff;
+  border-color: var(--mi-blue);
+}
+.btn-primary:hover {
+  background: var(--mi-blue-dark);
+  border-color: var(--mi-blue-dark);
+  color: #fff;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--mi-blue);
+  border-color: var(--mi-blue);
+}
+.btn-outline:hover {
+  background: var(--mi-blue);
+  color: #fff;
+}
+
+.btn-sm {
+  padding: 0.4rem 0.9rem;
+  font-size: 0.8rem;
+}
+
+/* === Navbar ================================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--mi-blue);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+.navbar {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.nav-logo:hover { text-decoration: none; }
+
+.logo-crest {
+  width: 38px;
+  height: 38px;
+  background: var(--mi-gold);
+  color: var(--mi-blue-dark);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+.logo-main { color: #fff; font-weight: 600; font-size: 0.95rem; font-family: 'Rajdhani', sans-serif; letter-spacing: 0.02em; }
+.logo-sub  { color: rgba(255,255,255,0.55); font-size: 0.67rem; letter-spacing: 0.04em; }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  list-style: none;
+}
+
+.nav-link {
+  color: rgba(255,255,255,0.82);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.4rem 0.7rem;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition), color var(--transition);
+}
+.nav-link:hover {
+  color: #fff;
+  background: rgba(255,255,255,0.12);
+  text-decoration: none;
+}
+.nav-link.active {
+  color: var(--mi-gold);
+  background: rgba(255,255,255,0.1);
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0.3rem;
+}
+.nav-toggle span {
+  width: 22px;
+  height: 2px;
+  background: rgba(255,255,255,0.88);
+  border-radius: 2px;
+  transition: transform 0.2s, opacity 0.2s;
+  display: block;
+}
+.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* === Page Header =========================================== */
+.page-header {
+  background: var(--mi-blue);
+  color: #fff;
+  padding: 2.5rem 0 2rem;
+}
+
+.page-header-breadcrumb {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 0.4rem;
+}
+.page-header-breadcrumb a { color: rgba(255,255,255,0.7); }
+.page-header-breadcrumb a:hover { color: #fff; text-decoration: none; }
+
+.page-header-title {
+  font-size: 2.4rem;
+  color: #fff;
+  margin-bottom: 0.4rem;
+}
+
+.page-header-desc {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.65);
+  margin: 0;
+}
+
+/* === Hero ================================================== */
+.hero {
+  background: var(--mi-blue);
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(255,255,255,0.025) 0px,
+    rgba(255,255,255,0.025) 1px,
+    transparent 1px,
+    transparent 14px
+  );
+  color: #fff;
+  padding-bottom: 0;
+}
+
+.hero-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 5rem 1.25rem 4rem;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(212,175,55,0.18);
+  border: 1px solid rgba(212,175,55,0.4);
+  color: var(--mi-gold);
+  font-size: 0.73rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.28rem 0.75rem;
+  border-radius: 20px;
+  margin-bottom: 1.25rem;
+}
+
+.hero-title {
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: #fff;
+  margin-bottom: 1.1rem;
+}
+.hero-title-accent { color: var(--mi-gold); display: block; }
+
+.hero-desc {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.72);
+  max-width: 480px;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.hero-actions .btn-outline {
+  color: rgba(255,255,255,0.85);
+  border-color: rgba(255,255,255,0.4);
+}
+.hero-actions .btn-outline:hover {
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  border-color: rgba(255,255,255,0.6);
+}
+
+.hero-stats-bar {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  display: flex;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  margin-top: 3rem;
+}
+
+.hero-stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.25rem 0.5rem;
+  border-right: 1px solid rgba(255,255,255,0.1);
+}
+.hero-stat:last-child { border-right: none; }
+
+.hero-stat-num {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--mi-gold);
+  line-height: 1;
+}
+.hero-stat-label {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.04em;
+  margin-top: 0.3rem;
+  text-align: center;
+}
+
+/* === Upcoming Match Card =================================== */
+.upcoming-section {
+  background: var(--bg-white);
+}
+
+.match-card-featured {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-md);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.mcf-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+.mcf-broadcast { color: var(--mi-blue-mid); font-weight: 500; }
+
+.mcf-teams {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.mcf-team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  flex: 1;
+}
+.mcf-team.away { align-items: center; }
+
+.mcf-team-badge {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  box-shadow: var(--shadow-sm);
+}
+.mi-badge  { background: var(--mi-blue); }
+.csk-badge { background: #FDB913; color: #1a1a2e; }
+
+.mcf-team-name { font-weight: 600; font-size: 0.9rem; text-align: center; }
+
+.mcf-vs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+.mcf-vs > span {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+.mcf-date-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.mcf-venue {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.countdown-wrap { text-align: center; padding-top: 1.25rem; border-top: 1px solid var(--border-light); }
+
+.countdown-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.countdown-unit { display: flex; flex-direction: column; align-items: center; }
+
+.countdown-num {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--mi-blue);
+  min-width: 3ch;
+  text-align: center;
+  line-height: 1;
+}
+.countdown-unit-label {
+  font-size: 0.66rem;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-top: 0.25rem;
+}
+.countdown-sep {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--mi-gold);
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+.countdown-live {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #e53e3e;
+  letter-spacing: 0.08em;
+}
+
+/* === Featured Players (Home) =============================== */
+.featured-players-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.featured-player-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.featured-player-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.fpc-header {
+  background: var(--team-color, var(--mi-blue));
+  padding: 1.5rem 1.25rem 1rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.fpc-avatar {
+  width: 56px;
+  height: 56px;
+  background: rgba(255,255,255,0.18);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.fpc-jersey {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.35);
+  line-height: 1;
+}
+
+.fpc-body { padding: 1.25rem; }
+.fpc-meta { margin-bottom: 1rem; }
+
+.fpc-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.captain-badge, .vc-badge, .badge-captain, .badge-vc {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: 3px;
+  letter-spacing: 0.04em;
+}
+.captain-badge, .badge-captain {
+  background: var(--mi-gold);
+  color: var(--mi-blue-dark);
+}
+.vc-badge, .badge-vc {
+  background: var(--mi-blue-mid);
+  color: #fff;
+}
+
+.fpc-role { font-size: 0.78rem; color: var(--text-muted); }
+
+.fpc-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.fpc-stat {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background: var(--bg-light);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.25rem;
+}
+.fpc-stat-val { font-family: 'Rajdhani', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--mi-blue); }
+.fpc-stat-key { font-size: 0.65rem; color: var(--text-muted); letter-spacing: 0.04em; }
+
+.fpc-link {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--mi-blue);
+}
+.fpc-link:hover { text-decoration: underline; }
+
+/* === News Preview (Home) =================================== */
+.news-preview-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.news-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition);
+}
+.news-card:hover { box-shadow: var(--shadow-md); }
+.news-card-featured { background: var(--mi-blue); color: #fff; border-color: transparent; }
+.news-card-featured .news-card-tag { background: rgba(212,175,55,0.2); color: var(--mi-gold); }
+.news-card-featured .news-card-title { color: #fff; }
+.news-card-featured .news-card-excerpt { color: rgba(255,255,255,0.75); }
+.news-card-featured .news-card-meta { color: rgba(255,255,255,0.5); border-top-color: rgba(255,255,255,0.15); }
+.news-card-featured .news-read-more { color: var(--mi-gold); }
+
+.news-card-tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--bg-light);
+  color: var(--mi-blue);
+  padding: 0.2rem 0.55rem;
+  border-radius: 3px;
+  margin-bottom: 0.65rem;
+}
+.news-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-bottom: 0.65rem;
+  color: var(--text-dark);
+}
+.news-card-excerpt {
+  font-size: 0.83rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin-bottom: 1rem;
+}
+.news-card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: var(--text-light);
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-light);
+}
+.news-read-more { color: var(--mi-blue); font-weight: 600; }
+.news-read-more:hover { text-decoration: underline; }
+
+/* === Achievements ========================================== */
+.trophies-grid {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.trophy-item {
+  flex: 0 0 auto;
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  min-width: 120px;
+}
+.trophy-item.secondary { opacity: 0.7; }
+.trophy-icon { font-size: 2rem; margin-bottom: 0.4rem; }
+.trophy-year { display: block; font-family: 'Rajdhani', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--mi-blue); }
+.trophy-label { display: block; font-size: 0.72rem; color: var(--text-muted); margin-top: 0.2rem; }
+
+/* === Fan Zone Teaser ======================================= */
+.fanzone-teaser {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2.5rem;
+  align-items: center;
+}
+.fanzone-teaser-text p {
+  color: var(--text-mid);
+  max-width: 500px;
+  margin-bottom: 1.5rem;
+}
+.fanzone-teaser-stat-box {
+  background: var(--mi-blue);
+  color: #fff;
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  text-align: center;
+  min-width: 180px;
+}
+.fanzone-big-stat {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--mi-gold);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.fanzone-teaser-stat-box p { color: rgba(255,255,255,0.72); font-size: 0.85rem; margin: 0; }
+
+/* === Team Page ============================================= */
+.team-overview-grid {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 3rem;
+  align-items: start;
+}
+.team-overview-text p { color: var(--text-mid); }
+.team-overview-text .section-title { margin-bottom: 1.25rem; }
+
+.facts-heading {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--mi-gold);
+  display: inline-block;
+}
+.team-overview-facts {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.facts-list { display: flex; flex-direction: column; gap: 0.6rem; }
+.fact-row { display: grid; grid-template-columns: 120px 1fr; gap: 0.5rem; font-size: 0.85rem; }
+.fact-row dt { color: var(--text-muted); font-weight: 500; }
+.fact-row dd { color: var(--text-dark); font-weight: 500; }
+
+.leadership-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+.leadership-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  box-shadow: var(--shadow-sm);
+}
+
+.leadership-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.leadership-role-tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--bg-light);
+  color: var(--mi-blue);
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  margin-bottom: 0.4rem;
+}
+
+.leadership-info h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+.leadership-info p { font-size: 0.83rem; color: var(--text-mid); margin-bottom: 1rem; }
+
+.leadership-stats {
+  display: flex;
+  gap: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-light);
+}
+.l-stat { display: flex; flex-direction: column; }
+.l-stat span { font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--mi-blue); }
+.l-stat small { font-size: 0.68rem; color: var(--text-muted); }
+
+/* === Timeline ============================================== */
+.timeline {
+  position: relative;
+  padding-left: 2.5rem;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 70px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2.25rem;
+  position: relative;
+}
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 69px;
+  top: 0.6rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--border);
+  border: 2px solid var(--bg-body);
+  z-index: 1;
+}
+.timeline-item.highlight::before { background: var(--mi-gold); }
+
+.timeline-year {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--mi-blue);
+  text-align: right;
+  padding-top: 0.3rem;
+}
+
+.timeline-content {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  box-shadow: var(--shadow-sm);
+}
+.timeline-item.highlight .timeline-content {
+  border-left: 3px solid var(--mi-gold);
+}
+.timeline-content h4 { font-size: 1rem; margin-bottom: 0.4rem; color: var(--text-dark); }
+.timeline-content p { font-size: 0.83rem; color: var(--text-mid); margin: 0; }
+
+/* Ground info */
+.ground-info { display: grid; grid-template-columns: 3fr 2fr; gap: 2.5rem; align-items: start; }
+.ground-text p { color: var(--text-mid); }
+.ground-stats { margin-top: 1.25rem; }
+.ground-highlight-box {
+  background: var(--mi-blue);
+  color: #fff;
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  text-align: center;
+}
+.ground-highlight-num {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--mi-gold);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.ground-highlight-box p { color: rgba(255,255,255,0.72); font-size: 0.85rem; margin: 0; }
+
+/* === Players Page ========================================== */
+.players-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.search-wrap {
+  position: relative;
+  flex: 1;
+  max-width: 280px;
+}
+.search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-light);
+  pointer-events: none;
+}
+.search-input {
+  width: 100%;
+  padding: 0.55rem 0.75rem 0.55rem 2.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  background: var(--bg-white);
+  color: var(--text-dark);
+  transition: border-color var(--transition);
+  font-family: inherit;
+}
+.search-input:focus {
+  outline: none;
+  border-color: var(--mi-blue);
+  box-shadow: 0 0 0 3px rgba(0,54,116,0.08);
+}
+
+.filter-buttons { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.filter-btn {
+  padding: 0.45rem 0.9rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: var(--bg-white);
+  color: var(--text-mid);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.filter-btn:hover { border-color: var(--mi-blue); color: var(--mi-blue); }
+.filter-btn.active {
+  background: var(--mi-blue);
+  border-color: var(--mi-blue);
+  color: #fff;
+}
+
+.select-filter {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-white);
+  color: var(--text-dark);
+  font-size: 0.82rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+.select-filter:focus { outline: none; border-color: var(--mi-blue); }
+
+.players-count {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+
+.players-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+
+.player-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.player-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+.player-card-top {
+  background: var(--mi-blue);
+  padding: 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.player-avatar {
+  width: 52px;
+  height: 52px;
+  background: rgba(255,255,255,0.16);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+}
+.player-jersey {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.3);
+}
+
+.player-card-body { padding: 1.1rem; }
+
+.player-name-wrap { display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.3rem; }
+.player-name { font-size: 0.97rem; font-weight: 700; }
+
+.player-role-tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.18rem 0.5rem;
+  border-radius: 3px;
+  margin-bottom: 0.2rem;
+}
+.role-batsman   { background: #ebf8ff; color: #2b6cb0; }
+.role-bowler    { background: #fff5f5; color: #c53030; }
+.role-allrounder{ background: #f0fff4; color: #276749; }
+
+.player-nationality {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--text-light);
+  margin-bottom: 0.85rem;
+}
+
+.player-stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.4rem;
+  margin-bottom: 0.85rem;
+}
+.pstat {
+  text-align: center;
+  background: var(--bg-light);
+  border-radius: var(--radius-sm);
+  padding: 0.4rem 0.2rem;
+}
+.pstat-val { display: block; font-family: 'Rajdhani', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--mi-blue); }
+.pstat-key { display: block; font-size: 0.6rem; color: var(--text-muted); letter-spacing: 0.03em; }
+
+.player-bio-toggle { border-top: 1px solid var(--border-light); padding-top: 0.75rem; }
+.bio-btn {
+  background: none;
+  border: none;
+  color: var(--mi-blue);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+}
+.bio-btn:hover { text-decoration: underline; }
+.player-bio {
+  font-size: 0.78rem;
+  color: var(--text-mid);
+  line-height: 1.5;
+  margin-top: 0.5rem;
+}
+.player-bio.hidden { display: none; }
+
+.no-results {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-muted);
+}
+.no-results.hidden { display: none; }
+
+/* === Matches Page ========================================== */
+.season-summary {
+  display: flex;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+  box-shadow: var(--shadow-sm);
+}
+.ssumm-stat {
+  flex: 1;
+  background: var(--bg-white);
+  padding: 1.25rem;
+  text-align: center;
+}
+.ssumm-num { display: block; font-family: 'Rajdhani', sans-serif; font-size: 2.2rem; font-weight: 700; color: var(--mi-blue); line-height: 1; }
+.ssumm-num.green { color: #276749; }
+.ssumm-num.red   { color: #c53030; }
+.ssumm-label { font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.04em; margin-top: 0.2rem; display: block; }
+
+.form-guide-wrap { display: flex; align-items: center; gap: 0.75rem; font-size: 0.82rem; }
+.form-guide-label { color: var(--text-muted); font-weight: 500; }
+.form-guide { display: flex; gap: 0.35rem; }
+.form-pill {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #fff;
+}
+.form-pill.win  { background: #276749; }
+.form-pill.loss { background: #c53030; }
+
+.fixtures-list { display: flex; flex-direction: column; gap: 0.75rem; }
+.fixture-row {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  display: grid;
+  grid-template-columns: 140px 1fr 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.fixture-date-col { display: flex; flex-direction: column; gap: 0.1rem; }
+.fixture-day  { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.fixture-date { font-weight: 600; font-size: 0.88rem; }
+.fixture-time { font-size: 0.78rem; color: var(--mi-blue); font-weight: 500; }
+
+.fixture-teams-col { display: flex; align-items: center; gap: 1rem; }
+.fixture-team { display: flex; align-items: center; gap: 0.6rem; }
+.fixture-team.mi-team .fixture-team-name { font-weight: 700; }
+.fixture-team-badge {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+}
+.fixture-team-name { font-size: 0.85rem; }
+.fixture-sep { color: var(--text-muted); font-weight: 600; font-size: 0.8rem; }
+
+.fixture-info-col { display: flex; flex-direction: column; gap: 0.3rem; }
+.fixture-venue { font-size: 0.75rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.3rem; }
+.fixture-broadcast { font-size: 0.72rem; color: var(--mi-blue-mid); }
+
+.status-badge {
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.3rem 0.7rem;
+  border-radius: 20px;
+}
+.status-upcoming { background: #ebf8ff; color: #2b6cb0; }
+
+/* Results table */
+.results-table-wrap { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--border); }
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.83rem;
+  background: var(--bg-white);
+}
+.results-table th {
+  background: var(--mi-blue);
+  color: rgba(255,255,255,0.85);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  font-family: 'Inter', sans-serif;
+  white-space: nowrap;
+}
+.results-table td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--border-light); color: var(--text-mid); }
+.results-table tr:last-child td { border-bottom: none; }
+.results-table tr.result-win  { border-left: 3px solid #276749; }
+.results-table tr.result-loss { border-left: 3px solid #e53e3e; }
+.results-table tr:hover td { background: var(--bg-light); }
+.mi-team-name { font-weight: 700; color: var(--mi-blue); }
+.venue-cell { max-width: 160px; }
+.score-cell { font-weight: 500; font-family: 'Rajdhani', sans-serif; font-size: 0.9rem; }
+
+.result-tag {
+  display: inline-block;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  text-align: center; line-height: 22px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #fff;
+  margin-right: 0.4rem;
+}
+.tag-win  { background: #276749; }
+.tag-loss { background: #e53e3e; }
+.result-desc { font-size: 0.78rem; color: var(--text-muted); }
+
+.venue-info-box { display: grid; grid-template-columns: 3fr 2fr; gap: 2rem; }
+.venue-details .facts-list { margin-top: 0.5rem; }
+.venue-tip {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
+}
+.venue-tip h4 { font-size: 0.95rem; margin-bottom: 0.75rem; }
+.venue-tip ul { display: flex; flex-direction: column; gap: 0.55rem; }
+.venue-tip li {
+  font-size: 0.82rem;
+  color: var(--text-mid);
+  padding-left: 0.9rem;
+  position: relative;
+}
+.venue-tip li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--mi-gold);
+  font-weight: 700;
+}
+
+/* === Stats Page ============================================ */
+.stats-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.stat-overview-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
+}
+.soc-num { display: block; font-family: 'Rajdhani', sans-serif; font-size: 2.2rem; font-weight: 700; color: var(--mi-blue); line-height: 1; margin-bottom: 0.25rem; }
+.soc-label { font-size: 0.78rem; color: var(--text-muted); display: block; margin-bottom: 0.75rem; }
+.soc-bar { height: 4px; background: var(--bg-light); border-radius: 4px; overflow: hidden; }
+.soc-fill { height: 100%; border-radius: 4px; transition: width 0.6s ease; }
+
+.chart-container {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.stats-sub-heading { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--text-dark); }
+
+.stats-table-wrap { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--border); }
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.84rem;
+  background: var(--bg-white);
+}
+.stats-table th {
+  background: var(--mi-blue);
+  color: rgba(255,255,255,0.85);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.7rem 1rem;
+}
+.stats-table td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--border-light); color: var(--text-mid); }
+.stats-table tr:last-child td { border-bottom: none; }
+.stats-table tr:hover td { background: var(--bg-light); }
+.player-name-cell { font-weight: 600; color: var(--text-dark); display: flex; align-items: center; gap: 0.4rem; white-space: nowrap; }
+
+/* === Fan Zone ============================================== */
+.fanzone-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 2rem;
+  align-items: start;
+}
+
+.fanzone-main { display: flex; flex-direction: column; gap: 1.75rem; }
+
+.poll-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+.poll-header { margin-bottom: 1.25rem; }
+.poll-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mi-gold-dim);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.poll-question { font-size: 1.05rem; font-weight: 700; }
+
+.poll-options { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 0.75rem; }
+.poll-option {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-light);
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  transition: border-color var(--transition), background var(--transition);
+}
+.poll-option:hover { border-color: var(--mi-blue); background: var(--bg-white); }
+.poll-option.selected { border-color: var(--mi-blue); background: rgba(0,54,116,0.04); }
+.poll-option.voted { cursor: default; }
+.poll-opt-text { font-weight: 600; }
+.poll-bar-wrap { height: 6px; background: var(--border); border-radius: 4px; overflow: hidden; }
+.poll-bar { height: 100%; background: var(--mi-blue); border-radius: 4px; transition: width 0.5s ease; }
+.poll-pct { font-family: 'Rajdhani', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--mi-blue); min-width: 3ch; text-align: right; }
+
+.poll-status { font-size: 0.78rem; color: var(--text-muted); }
+.poll-total-votes { font-size: 0.75rem; color: var(--text-light); margin-top: 0.25rem; }
+
+/* Comments */
+.comment-section {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+.comment-section-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem; }
+.comment-section-sub   { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1.25rem; }
+
+.comment-form { margin-bottom: 1.75rem; padding-bottom: 1.75rem; border-bottom: 1px solid var(--border-light); }
+.comment-form-row { position: relative; margin-bottom: 0.65rem; }
+.comment-input, .comment-textarea {
+  width: 100%;
+  padding: 0.6rem 3rem 0.6rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.85rem;
+  color: var(--text-dark);
+  background: var(--bg-white);
+  transition: border-color var(--transition);
+}
+.comment-input:focus, .comment-textarea:focus {
+  outline: none;
+  border-color: var(--mi-blue);
+  box-shadow: 0 0 0 3px rgba(0,54,116,0.07);
+}
+.comment-textarea { resize: vertical; min-height: 90px; }
+.char-counter {
+  position: absolute;
+  right: 0.6rem;
+  top: 0.65rem;
+  font-size: 0.68rem;
+  color: var(--text-light);
+}
+.char-counter.textarea-counter { top: auto; bottom: 0.6rem; }
+
+.comment-feedback { font-size: 0.8rem; margin-top: 0.5rem; min-height: 1.2em; }
+.comment-feedback.success { color: #276749; }
+.comment-feedback.error   { color: #c53030; }
+
+.comments-list { display: flex; flex-direction: column; gap: 1rem; }
+.comment-item { display: flex; gap: 0.85rem; align-items: flex-start; }
+.comment-avatar {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: var(--mi-blue);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+.comment-content { flex: 1; }
+.comment-meta { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.3rem; }
+.comment-meta strong { font-size: 0.85rem; }
+.comment-time { font-size: 0.72rem; color: var(--text-light); }
+.comment-message { font-size: 0.83rem; color: var(--text-mid); margin: 0; }
+.no-comments { color: var(--text-muted); font-size: 0.85rem; }
+
+/* Fan Zone Sidebar */
+.fanzone-sidebar { display: flex; flex-direction: column; gap: 1.25rem; }
+.sidebar-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
+}
+.sidebar-card-title { font-size: 0.97rem; font-weight: 700; margin-bottom: 0.85rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border-light); }
+
+.social-links-list { display: flex; flex-direction: column; gap: 0.5rem; }
+.social-link-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background var(--transition);
+  color: var(--text-dark);
+}
+.social-link-item:hover { background: var(--bg-light); text-decoration: none; }
+.sl-icon {
+  width: 30px; height: 30px;
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+}
+.twitter  .sl-icon { background: #1a1a1a; }
+.insta    .sl-icon { background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
+.youtube  .sl-icon { background: #ff0000; }
+.facebook .sl-icon { background: #1877f2; }
+
+.gallery-sub  { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.75rem; }
+.gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 0.75rem; }
+.gallery-thumb {
+  aspect-ratio: 1;
+  border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.68rem; color: rgba(255,255,255,0.7);
+  font-weight: 600;
+}
+.g1 { background: linear-gradient(135deg,#003674,#2c5282); }
+.g2 { background: linear-gradient(135deg,#D4AF37,#b8960e); }
+.g3 { background: linear-gradient(135deg,#2c5282,#553c9a); }
+.g4 { background: linear-gradient(135deg,#003674,#001f47); }
+.gallery-note { font-size: 0.75rem; color: var(--text-muted); }
+
+.snapshot-list { display: flex; flex-direction: column; }
+.snapshot-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.82rem;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid var(--border-light);
+}
+.snapshot-list li:last-child { border-bottom: none; }
+.snapshot-list li span { color: var(--text-muted); }
+.snapshot-list li strong { color: var(--text-dark); }
+
+/* === News Page ============================================= */
+.news-featured {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+  max-width: 860px;
+}
+.news-featured-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.4rem; line-height: 1.25; }
+.news-featured-meta  { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 1.25rem; }
+.news-featured-excerpt { font-size: 1rem; color: var(--text-mid); font-weight: 500; margin-bottom: 1.1rem; border-left: 3px solid var(--mi-gold); padding-left: 1rem; }
+.news-featured p { font-size: 0.88rem; color: var(--text-mid); }
+
+.news-tag {
+  display: inline-block;
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.22rem 0.6rem;
+  border-radius: 3px;
+  margin-bottom: 0.75rem;
+}
+.tag-match-report { background: #ebf8ff; color: #2b6cb0; }
+.tag-team         { background: #f0fff4; color: #276749; }
+.tag-youth        { background: #faf5ff; color: #553c9a; }
+.tag-opinion      { background: #fffbeb; color: #92400e; }
+
+.article-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.25rem; }
+.atag {
+  font-size: 0.73rem;
+  background: var(--bg-light);
+  color: var(--text-muted);
+  padding: 0.2rem 0.6rem;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+}
+
+.news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.news-article-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.news-article-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.nac-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; }
+.nac-date { font-size: 0.72rem; color: var(--text-light); }
+.nac-title { font-size: 0.97rem; font-weight: 700; margin-bottom: 0.6rem; line-height: 1.3; }
+.nac-excerpt { font-size: 0.8rem; color: var(--text-mid); line-height: 1.55; margin-bottom: 0.85rem; }
+.nac-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+
+.news-archive-note {
+  text-align: center;
+  padding: 1.25rem;
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* === Footer ================================================ */
+.site-footer {
+  background: var(--mi-blue-dark);
+  color: rgba(255,255,255,0.75);
+  margin-top: 0;
+}
+
+.footer-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 3rem 1.25rem 2rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 2.5rem;
+}
+
+.footer-brand { display: flex; gap: 0.75rem; align-items: flex-start; }
+.footer-logo-crest {
+  width: 44px; height: 44px;
+  background: var(--mi-gold);
+  color: var(--mi-blue-dark);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.footer-brand strong { color: #fff; font-size: 0.95rem; display: block; margin-bottom: 0.2rem; }
+.footer-brand p { font-size: 0.78rem; color: rgba(255,255,255,0.5); margin: 0; }
+
+.footer-links h4 { color: #fff; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.85rem; }
+.footer-links ul { display: flex; flex-direction: column; gap: 0.45rem; }
+.footer-links a { font-size: 0.82rem; color: rgba(255,255,255,0.6); transition: color var(--transition); }
+.footer-links a:hover { color: #fff; text-decoration: none; }
+
+.footer-social h4 { color: #fff; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.85rem; }
+.social-icons { display: flex; gap: 0.5rem; margin-bottom: 0.85rem; }
+.social-icon {
+  width: 34px; height: 34px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.7);
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.social-icon:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.4);
+  color: #fff;
+  text-decoration: none;
+}
+.footer-tagline { font-size: 0.75rem; color: rgba(255,255,255,0.4); }
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 1.1rem 1.25rem;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.38);
+  text-align: center;
+}
+
+/* === Responsive ============================================ */
+@media (max-width: 1024px) {
+  .featured-players-grid { grid-template-columns: repeat(2, 1fr); }
+  .news-preview-grid { grid-template-columns: 1fr 1fr; }
+  .news-preview-grid .news-card-featured { grid-column: span 2; }
+  .news-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-inner { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .stats-overview-grid { grid-template-columns: repeat(3, 1fr); }
+  .leadership-grid { grid-template-columns: 1fr; }
+  .team-overview-grid { grid-template-columns: 1fr; }
+  .ground-info { grid-template-columns: 1fr; }
+  .venue-info-box { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .navbar { height: 56px; }
+
+  .nav-toggle { display: flex; }
+
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: 56px;
+    left: 0;
+    right: 0;
+    background: var(--mi-blue-dark);
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0.75rem 0;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    z-index: 99;
+    gap: 0;
+  }
+  .nav-links.open { display: flex; }
+  .nav-link {
+    padding: 0.8rem 1.5rem;
+    border-radius: 0;
+    font-size: 0.92rem;
+  }
+  .nav-link.active { background: rgba(255,255,255,0.08); }
+
+  .hero-inner { padding: 3rem 1.25rem 2.5rem; }
+  .hero-stats-bar { display: grid; grid-template-columns: repeat(2, 1fr); }
+  .hero-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .hero-stat:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.1); }
+  .hero-stat:nth-last-child(-n+2) { border-bottom: none; }
+
+  .section { padding: 2.75rem 0; }
+  .section-title { font-size: 1.65rem; }
+
+  .featured-players-grid { grid-template-columns: 1fr; }
+  .news-preview-grid { grid-template-columns: 1fr; }
+  .news-preview-grid .news-card-featured { grid-column: auto; }
+  .news-grid { grid-template-columns: 1fr; }
+
+  .fanzone-layout { grid-template-columns: 1fr; }
+  .fanzone-teaser { grid-template-columns: 1fr; }
+  .fanzone-teaser-stat-box { text-align: left; }
+
+  .trophies-grid { gap: 0.75rem; }
+
+  .fixture-row {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  .fixture-teams-col { flex-wrap: wrap; }
+
+  .results-table { font-size: 0.78rem; }
+  .results-table th, .results-table td { padding: 0.6rem 0.7rem; }
+
+  .stats-overview-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .footer-inner { grid-template-columns: 1fr; gap: 1.5rem; padding: 2rem 1.25rem 1.5rem; }
+
+  .match-card-featured { padding: 1.25rem; }
+  .mcf-team-badge { width: 52px; height: 52px; font-size: 1rem; }
+  .countdown-num { font-size: 1.8rem; }
+
+  .page-header { padding: 1.75rem 0 1.5rem; }
+  .page-header-title { font-size: 1.8rem; }
+
+  .players-controls { flex-direction: column; align-items: stretch; }
+  .search-wrap { max-width: 100%; }
+
+  .players-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .timeline { padding-left: 0; }
+  .timeline::before { left: 50px; }
+  .timeline-item { grid-template-columns: 55px 1fr; gap: 1rem; }
+  .timeline-item::before { left: 48px; }
+  .timeline-year { font-size: 0.88rem; }
+
+  .poll-option { grid-template-columns: 1fr auto; }
+  .poll-bar-wrap { display: none; }
+}
+
+@media (max-width: 480px) {
+  .players-grid { grid-template-columns: 1fr; }
+  .hero-title { font-size: 2rem; }
+  .section-title { font-size: 1.45rem; }
+  .countdown-num { font-size: 1.5rem; }
+  .news-article-card:hover { transform: none; }
+  .player-card:hover { transform: none; }
+  .featured-player-card:hover { transform: none; }
+}

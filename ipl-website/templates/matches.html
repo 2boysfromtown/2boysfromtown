@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+
+{% block title %}Matches{% endblock %}
+{% block meta_desc %}Mumbai Indians IPL 2024 fixture list — upcoming matches, past results, and venue info.{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+  <div class="container">
+    <p class="page-header-breadcrumb"><a href="/">Home</a> / Matches</p>
+    <h1 class="page-header-title">Fixtures &amp; Results</h1>
+    <p class="page-header-desc">IPL 2024 · League Stage</p>
+  </div>
+</div>
+
+<!-- ── Season Summary ────────────────────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="season-summary">
+      <div class="ssumm-stat">
+        <span class="ssumm-num" id="totalPlayed">{{ completed|length }}</span>
+        <span class="ssumm-label">Played</span>
+      </div>
+      <div class="ssumm-stat">
+        <span class="ssumm-num green">
+          {{ completed | selectattr('winner', 'equalto', 'MI') | list | length }}
+        </span>
+        <span class="ssumm-label">Won</span>
+      </div>
+      <div class="ssumm-stat">
+        <span class="ssumm-num red">
+          {{ completed | rejectattr('winner', 'equalto', 'MI') | list | length }}
+        </span>
+        <span class="ssumm-label">Lost</span>
+      </div>
+      <div class="ssumm-stat">
+        <span class="ssumm-num">{{ upcoming|length }}</span>
+        <span class="ssumm-label">Upcoming</span>
+      </div>
+    </div>
+
+    <!-- Form guide -->
+    <div class="form-guide-wrap">
+      <span class="form-guide-label">Recent Form:</span>
+      <div class="form-guide">
+        {% set recent = completed | reverse | list %}
+        {% for m in recent[:5] %}
+          <span class="form-pill {{ 'win' if m.winner == 'MI' else 'loss' }}">
+            {{ 'W' if m.winner == 'MI' else 'L' }}
+          </span>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Upcoming Matches ──────────────────────────────────────────────────── -->
+{% if upcoming %}
+<section class="section bg-light">
+  <div class="container">
+    <div class="section-label">Next Up</div>
+    <h2 class="section-title">Upcoming Matches</h2>
+
+    <div class="fixtures-list">
+      {% for match in upcoming %}
+      <div class="fixture-row upcoming">
+        <div class="fixture-date-col">
+          <span class="fixture-day">{{ match.day }}</span>
+          <span class="fixture-date">{{ match.date }}</span>
+          <span class="fixture-time">{{ match.time }}</span>
+        </div>
+        <div class="fixture-teams-col">
+          <div class="fixture-team {{ 'mi-team' if match.home_short == 'MI' }}">
+            <span class="fixture-team-badge" style="background:{{ match.home_color }};">{{ match.home_short }}</span>
+            <span class="fixture-team-name">{{ match.home_team }}</span>
+          </div>
+          <span class="fixture-sep">vs</span>
+          <div class="fixture-team {{ 'mi-team' if match.away_short == 'MI' }}">
+            <span class="fixture-team-badge" style="background:{{ match.away_color }};">{{ match.away_short }}</span>
+            <span class="fixture-team-name">{{ match.away_team }}</span>
+          </div>
+        </div>
+        <div class="fixture-info-col">
+          <span class="fixture-venue">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            {{ match.venue }}
+          </span>
+          <span class="fixture-broadcast">{{ match.broadcast }}</span>
+        </div>
+        <div class="fixture-status-col">
+          <span class="status-badge status-upcoming">Upcoming</span>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- ── Past Results ──────────────────────────────────────────────────────── -->
+{% if completed %}
+<section class="section">
+  <div class="container">
+    <div class="section-label">Results</div>
+    <h2 class="section-title">Past Matches</h2>
+
+    <div class="results-table-wrap">
+      <table class="results-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Match</th>
+            <th>Venue</th>
+            <th>MI Score</th>
+            <th>Opp. Score</th>
+            <th>Result</th>
+            <th>POM</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for match in completed %}
+          <tr class="{{ 'result-win' if match.winner == 'MI' else 'result-loss' }}">
+            <td>{{ match.date }}</td>
+            <td>
+              {% if match.home_short == 'MI' %}
+                <span class="mi-team-name">MI</span> vs {{ match.away_short }}
+              {% else %}
+                {{ match.home_short }} vs <span class="mi-team-name">MI</span>
+              {% endif %}
+            </td>
+            <td class="venue-cell">{{ match.venue.split(',')[0] }}</td>
+            <td class="score-cell">{{ match.mi_score }}</td>
+            <td class="score-cell">{{ match.opp_score }}</td>
+            <td>
+              <span class="result-tag {{ 'tag-win' if match.winner == 'MI' else 'tag-loss' }}">
+                {{ 'W' if match.winner == 'MI' else 'L' }}
+              </span>
+              <span class="result-desc">{{ match.result }}</span>
+            </td>
+            <td>{{ match.pom }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- ── Venue Info ────────────────────────────────────────────────────────── -->
+<section class="section bg-light">
+  <div class="container">
+    <div class="section-label">Home Ground</div>
+    <h2 class="section-title">Wankhede Stadium</h2>
+    <div class="venue-info-box">
+      <div class="venue-details">
+        <dl class="facts-list">
+          <div class="fact-row"><dt>Location</dt><dd>Churchgate, Mumbai, Maharashtra</dd></div>
+          <div class="fact-row"><dt>Capacity</dt><dd>~33,108</dd></div>
+          <div class="fact-row"><dt>Established</dt><dd>1974</dd></div>
+          <div class="fact-row"><dt>Surface</dt><dd>Turf (batting-friendly, quick outfield)</dd></div>
+          <div class="fact-row"><dt>MI Home Record</dt><dd>69% win rate (all IPL seasons)</dd></div>
+        </dl>
+      </div>
+      <div class="venue-tip">
+        <h4>Wankhede Tips</h4>
+        <ul>
+          <li>Toss is crucial — teams prefer chasing at night</li>
+          <li>Average first innings total: ~175</li>
+          <li>The short boundaries square of the wicket reward big hitters</li>
+          <li>Sea breeze can assist swing bowlers in early overs</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

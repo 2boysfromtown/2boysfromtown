@@ -1,0 +1,286 @@
+{% extends "base.html" %}
+
+{% block title %}Statistics{% endblock %}
+{% block meta_desc %}Mumbai Indians IPL 2024 statistics — team and player performance charts.{% endblock %}
+
+{% block extra_css %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+  <div class="container">
+    <p class="page-header-breadcrumb"><a href="/">Home</a> / Statistics</p>
+    <h1 class="page-header-title">Statistics</h1>
+    <p class="page-header-desc">IPL 2024 · Season Performance</p>
+  </div>
+</div>
+
+<!-- ── Season Overview Cards ────────────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">Season 2024</div>
+    <h2 class="section-title">Team Overview</h2>
+
+    <div class="stats-overview-grid">
+      <div class="stat-overview-card">
+        <span class="soc-num">8</span>
+        <span class="soc-label">Wins</span>
+        <div class="soc-bar"><div class="soc-fill" style="width:57%;background:#003674;"></div></div>
+      </div>
+      <div class="stat-overview-card">
+        <span class="soc-num">6</span>
+        <span class="soc-label">Losses</span>
+        <div class="soc-bar"><div class="soc-fill" style="width:43%;background:#e53e3e;"></div></div>
+      </div>
+      <div class="stat-overview-card">
+        <span class="soc-num">57%</span>
+        <span class="soc-label">Win Rate</span>
+        <div class="soc-bar"><div class="soc-fill" style="width:57%;background:#D4AF37;"></div></div>
+      </div>
+      <div class="stat-overview-card">
+        <span class="soc-num">174.3</span>
+        <span class="soc-label">Avg 1st Innings</span>
+        <div class="soc-bar"><div class="soc-fill" style="width:70%;background:#003674;"></div></div>
+      </div>
+      <div class="stat-overview-card">
+        <span class="soc-num">162.8</span>
+        <span class="soc-label">Avg Chasing</span>
+        <div class="soc-bar"><div class="soc-fill" style="width:65%;background:#2c5282;"></div></div>
+      </div>
+      <div class="stat-overview-card">
+        <span class="soc-num">8.74</span>
+        <span class="soc-label">Team Economy</span>
+        <div class="soc-bar"><div class="soc-fill" style="width:58%;background:#553c9a;"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Charts ────────────────────────────────────────────────────────────── -->
+<section class="section bg-light">
+  <div class="container">
+    <div class="section-label">Batting</div>
+    <h2 class="section-title">Top Run Scorers — IPL 2024</h2>
+    <div class="chart-container">
+      <canvas id="battingChart" height="120"></canvas>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-label">Bowling</div>
+    <h2 class="section-title">Top Wicket Takers — IPL 2024</h2>
+    <div class="chart-container">
+      <canvas id="bowlingChart" height="120"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- ── Win/Loss Trend ────────────────────────────────────────────────────── -->
+<section class="section bg-light">
+  <div class="container">
+    <div class="section-label">Form</div>
+    <h2 class="section-title">Win / Loss Trend</h2>
+    <div class="chart-container" style="max-width:600px;">
+      <canvas id="trendChart" height="140"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- ── Career IPL Stats ──────────────────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">All-time IPL</div>
+    <h2 class="section-title">Career Statistics</h2>
+
+    <h3 class="stats-sub-heading">Batting</h3>
+    <div class="stats-table-wrap">
+      <table class="stats-table">
+        <thead>
+          <tr>
+            <th>Player</th>
+            <th>Mat</th>
+            <th>Runs</th>
+            <th>Avg</th>
+            <th>S/R</th>
+            <th>50s</th>
+            <th>100s</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="player-name-cell">Rohit Sharma <span class="captain-badge">C</span></td>
+            <td>246</td><td>6628</td><td>29.24</td><td>130.88</td><td>41</td><td>2</td>
+          </tr>
+          <tr>
+            <td class="player-name-cell">Suryakumar Yadav</td>
+            <td>148</td><td>3627</td><td>31.27</td><td>145.21</td><td>22</td><td>1</td>
+          </tr>
+          <tr>
+            <td class="player-name-cell">Ishan Kishan</td>
+            <td>105</td><td>2644</td><td>27.55</td><td>136.78</td><td>16</td><td>1</td>
+          </tr>
+          <tr>
+            <td class="player-name-cell">Hardik Pandya</td>
+            <td>122</td><td>1853</td><td>26.47</td><td>148.32</td><td>8</td><td>0</td>
+          </tr>
+          <tr>
+            <td class="player-name-cell">Tilak Varma</td>
+            <td>37</td><td>1002</td><td>33.40</td><td>140.59</td><td>7</td><td>0</td>
+          </tr>
+          <tr>
+            <td class="player-name-cell">Tim David</td>
+            <td>42</td><td>876</td><td>35.04</td><td>163.44</td><td>5</td><td>0</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="stats-sub-heading" style="margin-top:2.5rem;">Bowling</h3>
+    <div class="stats-table-wrap">
+      <table class="stats-table">
+        <thead>
+          <tr>
+            <th>Player</th>
+            <th>Mat</th>
+            <th>Wkts</th>
+            <th>Avg</th>
+            <th>Economy</th>
+            <th>Best</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="player-name-cell">Jasprit Bumrah <span class="vc-badge">VC</span></td>
+            <td>134</td><td>163</td><td>23.21</td><td>7.41</td><td>5/10</td>
+          </tr>
+          <tr>
+            <td class="player-name-cell">Piyush Chawla</td>
+            <td>192</td><td>192</td><td>26.67</td><td>7.91</td><td>4/17</td>
+          </tr>
+          <tr>
+            <td class="player-name-cell">Akash Madhwal</td>
+            <td>22</td><td>28</td><td>21.46</td><td>8.24</td><td>5/5</td>
+          </tr>
+          <tr>
+            <td class="player-name-cell">Gerald Coetzee</td>
+            <td>14</td><td>18</td><td>19.22</td><td>9.56</td><td>3/22</td>
+          </tr>
+          <tr>
+            <td class="player-name-cell">Hardik Pandya</td>
+            <td>122</td><td>78</td><td>30.14</td><td>9.12</td><td>3/20</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+const miBlue   = '#003674';
+const miGold   = '#D4AF37';
+const miMid    = '#2c5282';
+const gridLine = '#e2e8f0';
+
+// ── Batting chart
+const battingCtx = document.getElementById('battingChart').getContext('2d');
+new Chart(battingCtx, {
+  type: 'bar',
+  data: {
+    labels: ['Rohit Sharma', 'SKY', 'Ishan Kishan', 'Hardik Pandya', 'Tilak Varma', 'Tim David'],
+    datasets: [{
+      label: 'Runs (IPL 2024)',
+      data: [398, 531, 211, 148, 284, 197],
+      backgroundColor: [miBlue, miGold, miMid, '#553c9a', miBlue, miMid],
+      borderRadius: 4,
+      borderSkipped: false
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ' ' + ctx.raw + ' runs' } }
+    },
+    scales: {
+      y: { beginAtZero: true, grid: { color: gridLine }, ticks: { font: { family: 'Inter' } } },
+      x: { grid: { display: false }, ticks: { font: { family: 'Inter' } } }
+    }
+  }
+});
+
+// ── Bowling chart
+const bowlingCtx = document.getElementById('bowlingChart').getContext('2d');
+new Chart(bowlingCtx, {
+  type: 'bar',
+  data: {
+    labels: ['Jasprit Bumrah', 'Akash Madhwal', 'Gerald Coetzee', 'Piyush Chawla', 'Hardik Pandya'],
+    datasets: [{
+      label: 'Wickets (IPL 2024)',
+      data: [15, 12, 11, 8, 7],
+      backgroundColor: miBlue,
+      borderRadius: 4,
+      borderSkipped: false
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ' ' + ctx.raw + ' wickets' } }
+    },
+    scales: {
+      y: { beginAtZero: true, grid: { color: gridLine }, ticks: { font: { family: 'Inter' } } },
+      x: { grid: { display: false }, ticks: { font: { family: 'Inter' } } }
+    }
+  }
+});
+
+// ── Win/Loss trend chart
+const trendCtx = document.getElementById('trendChart').getContext('2d');
+new Chart(trendCtx, {
+  type: 'line',
+  data: {
+    labels: ['M1','M2','M3','M4','M5','M6','M7','M8','M9','M10','M11','M12','M13','M14'],
+    datasets: [
+      {
+        label: 'Cumulative Wins',
+        data: [1,1,2,2,3,4,4,5,5,6,7,7,8,8],
+        borderColor: miBlue,
+        backgroundColor: 'rgba(0,54,116,0.08)',
+        fill: true,
+        tension: 0.35,
+        pointRadius: 4,
+        pointBackgroundColor: miBlue
+      },
+      {
+        label: 'Cumulative Losses',
+        data: [0,1,1,2,2,2,3,3,4,4,4,5,5,6],
+        borderColor: '#e53e3e',
+        backgroundColor: 'rgba(229,62,62,0.05)',
+        fill: true,
+        tension: 0.35,
+        pointRadius: 4,
+        pointBackgroundColor: '#e53e3e'
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { position: 'bottom', labels: { font: { family: 'Inter' }, usePointStyle: true } }
+    },
+    scales: {
+      y: { beginAtZero: true, grid: { color: gridLine }, ticks: { font: { family: 'Inter' } } },
+      x: { grid: { display: false }, ticks: { font: { family: 'Inter' } } }
+    }
+  }
+});
+</script>
+{% endblock %}
