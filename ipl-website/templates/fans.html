@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+
+{% block title %}Fan Zone{% endblock %}
+{% block meta_desc %}Mumbai Indians Fan Zone — polls, comments, fan gallery, and community interaction.{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+  <div class="container">
+    <p class="page-header-breadcrumb"><a href="/">Home</a> / Fan Zone</p>
+    <h1 class="page-header-title">Fan Zone</h1>
+    <p class="page-header-desc">The home of the Paltan. Aao, bolte hain!</p>
+  </div>
+</div>
+
+<!-- ── Main Fan Zone Layout ─────────────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="fanzone-layout">
+
+      <!-- Left column -->
+      <div class="fanzone-main">
+
+        <!-- Poll 1 -->
+        <div class="poll-card" id="poll-1" data-poll-id="best-batsman-2024">
+          <div class="poll-header">
+            <span class="poll-label">Fan Poll</span>
+            <h3 class="poll-question">Who's MI's best batsman in IPL 2024?</h3>
+          </div>
+          <div class="poll-options" id="poll-options-1">
+            <button class="poll-option" data-value="Rohit Sharma">
+              <span class="poll-opt-text">Rohit Sharma</span>
+              <div class="poll-bar-wrap"><div class="poll-bar" style="width:0%"></div></div>
+              <span class="poll-pct">—</span>
+            </button>
+            <button class="poll-option" data-value="Suryakumar Yadav">
+              <span class="poll-opt-text">Suryakumar Yadav</span>
+              <div class="poll-bar-wrap"><div class="poll-bar" style="width:0%"></div></div>
+              <span class="poll-pct">—</span>
+            </button>
+            <button class="poll-option" data-value="Tilak Varma">
+              <span class="poll-opt-text">Tilak Varma</span>
+              <div class="poll-bar-wrap"><div class="poll-bar" style="width:0%"></div></div>
+              <span class="poll-pct">—</span>
+            </button>
+            <button class="poll-option" data-value="Tim David">
+              <span class="poll-opt-text">Tim David</span>
+              <div class="poll-bar-wrap"><div class="poll-bar" style="width:0%"></div></div>
+              <span class="poll-pct">—</span>
+            </button>
+          </div>
+          <p class="poll-status" id="poll-status-1">Click an option to vote</p>
+          <p class="poll-total-votes" id="poll-votes-1"></p>
+        </div>
+
+        <!-- Poll 2 -->
+        <div class="poll-card" id="poll-2" data-poll-id="mi-vs-csk-winner">
+          <div class="poll-header">
+            <span class="poll-label">Match Prediction</span>
+            <h3 class="poll-question">Who wins MI vs CSK on May 10?</h3>
+          </div>
+          <div class="poll-options" id="poll-options-2">
+            <button class="poll-option" data-value="Mumbai Indians">
+              <span class="poll-opt-text">Mumbai Indians 💙</span>
+              <div class="poll-bar-wrap"><div class="poll-bar" style="width:0%"></div></div>
+              <span class="poll-pct">—</span>
+            </button>
+            <button class="poll-option" data-value="Chennai Super Kings">
+              <span class="poll-opt-text">Chennai Super Kings 💛</span>
+              <div class="poll-bar-wrap"><div class="poll-bar" style="width:0%"></div></div>
+              <span class="poll-pct">—</span>
+            </button>
+          </div>
+          <p class="poll-status" id="poll-status-2">Click an option to vote</p>
+          <p class="poll-total-votes" id="poll-votes-2"></p>
+        </div>
+
+        <!-- Comment wall -->
+        <div class="comment-section">
+          <h3 class="comment-section-title">Fan Wall</h3>
+          <p class="comment-section-sub">Leave a message for the Paltan</p>
+
+          <form class="comment-form" id="commentForm">
+            <div class="comment-form-row">
+              <input type="text" id="commentName" class="comment-input" placeholder="Your name" maxlength="60" required />
+              <span class="char-counter" id="nameCounter">0/60</span>
+            </div>
+            <div class="comment-form-row" style="position:relative;">
+              <textarea id="commentMessage" class="comment-textarea" placeholder="What do you think about MI this season?" maxlength="500" required></textarea>
+              <span class="char-counter textarea-counter" id="msgCounter">0/500</span>
+            </div>
+            <button type="submit" class="btn btn-primary" id="commentSubmit">Post Comment</button>
+            <p class="comment-feedback" id="commentFeedback"></p>
+          </form>
+
+          <div class="comments-list" id="commentsList">
+            {% if comments %}
+              {% for comment in comments %}
+              <div class="comment-item">
+                <div class="comment-avatar">{{ comment.name[0] | upper }}</div>
+                <div class="comment-content">
+                  <div class="comment-meta">
+                    <strong>{{ comment.name }}</strong>
+                    <span class="comment-time">{{ comment.created_at[:10] }}</span>
+                  </div>
+                  <p class="comment-message">{{ comment.message }}</p>
+                </div>
+              </div>
+              {% endfor %}
+            {% else %}
+              <p class="no-comments">Be the first to leave a comment!</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Right sidebar -->
+      <div class="fanzone-sidebar">
+
+        <!-- Social links -->
+        <div class="sidebar-card social-card">
+          <h4 class="sidebar-card-title">Follow MI</h4>
+          <div class="social-links-list">
+            <a href="#" class="social-link-item twitter">
+              <span class="sl-icon">𝕏</span>
+              <span>@MumbaiIndians</span>
+            </a>
+            <a href="#" class="social-link-item insta">
+              <span class="sl-icon">▣</span>
+              <span>@mumbaiindians</span>
+            </a>
+            <a href="#" class="social-link-item youtube">
+              <span class="sl-icon">▶</span>
+              <span>Mumbai Indians</span>
+            </a>
+            <a href="#" class="social-link-item facebook">
+              <span class="sl-icon">f</span>
+              <span>Mumbai Indians</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Fan Gallery placeholder -->
+        <div class="sidebar-card gallery-card">
+          <h4 class="sidebar-card-title">Fan Gallery</h4>
+          <p class="gallery-sub">Moments from fans at Wankhede and beyond</p>
+          <div class="gallery-grid">
+            <div class="gallery-thumb g1">Fan Tifo</div>
+            <div class="gallery-thumb g2">Match Day</div>
+            <div class="gallery-thumb g3">Celebration</div>
+            <div class="gallery-thumb g4">Jersey Day</div>
+          </div>
+          <p class="gallery-note">📸 Share your MI moments using <strong>#MumbaiIndians</strong></p>
+        </div>
+
+        <!-- Quick stats sidebar -->
+        <div class="sidebar-card">
+          <h4 class="sidebar-card-title">Season Snapshot</h4>
+          <ul class="snapshot-list">
+            <li><span>Matches played</span><strong>14</strong></li>
+            <li><span>Wins</span><strong>8</strong></li>
+            <li><span>Highest team score</span><strong>219/5</strong></li>
+            <li><span>Best bowling</span><strong>Bumrah 3/18</strong></li>
+            <li><span>Top scorer</span><strong>SKY — 531</strong></li>
+            <li><span>Top wickets</span><strong>Bumrah — 15</strong></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/polls.js') }}"></script>
+{% endblock %}
