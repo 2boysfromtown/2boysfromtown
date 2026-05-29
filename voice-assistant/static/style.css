@@ -1,0 +1,330 @@
+/* ── Reset & base ────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:          #0a0a0f;
+  --surface:     #111118;
+  --surface-2:   #1a1a24;
+  --border:      rgba(255,255,255,0.07);
+  --text:        #e8e8f0;
+  --text-muted:  #6b6b80;
+  --accent:      #6c63ff;
+  --accent-2:    #00d4ff;
+  --user-bg:     #1e1e2e;
+  --ai-bg:       #13131d;
+
+  --orb-idle:     radial-gradient(circle, #2a2a3e 0%, #0a0a0f 70%);
+  --orb-listen:   radial-gradient(circle, #6c63ff 0%, #00d4ff 50%, transparent 70%);
+  --orb-think:    radial-gradient(circle, #ffffff 0%, #a0a0c0 40%, transparent 70%);
+  --orb-speak:    radial-gradient(circle, #00d4ff 0%, #00ff94 50%, transparent 70%);
+}
+
+html, body { height: 100%; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* ── Layout ─────────────────────────────────────────────────── */
+#app {
+  width: 100%;
+  max-width: 680px;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.logo {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.model-badge {
+  font-size: 11px;
+  color: var(--text-muted);
+  background: var(--surface-2);
+  padding: 3px 9px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  font-family: "SF Mono", "Fira Code", monospace;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  padding: 24px 16px 0;
+  gap: 12px;
+}
+
+footer {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 24px 28px;
+  border-top: 1px solid var(--border);
+}
+
+/* ── Orb ─────────────────────────────────────────────────────── */
+#orb-container {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  flex-shrink: 0;
+}
+
+#orb {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(108, 99, 255, 0.15);
+  transition: all 0.5s ease;
+}
+.ring-1 { width: 140px; height: 140px; }
+.ring-2 { width: 110px; height: 110px; }
+.ring-3 { width: 80px; height: 80px; }
+
+.core {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--orb-idle);
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+  box-shadow: 0 0 0 0 transparent;
+}
+
+/* ── State: listening ────────────────────────────────────────── */
+body.listening .core {
+  background: var(--orb-listen);
+  animation: pulse-listen 1.2s ease-in-out infinite;
+}
+body.listening .ring-1 { border-color: rgba(108,99,255,0.25); animation: ring-expand 1.6s ease-out infinite; }
+body.listening .ring-2 { border-color: rgba(0,212,255,0.2);  animation: ring-expand 1.6s ease-out infinite 0.3s; }
+body.listening .ring-3 { border-color: rgba(108,99,255,0.3);  animation: ring-expand 1.6s ease-out infinite 0.6s; }
+
+@keyframes pulse-listen {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(108,99,255,0.4), 0 0 30px rgba(108,99,255,0.3); transform: scale(1); }
+  50%       { box-shadow: 0 0 0 12px rgba(108,99,255,0),  0 0 50px rgba(0,212,255,0.4); transform: scale(1.08); }
+}
+
+/* ── State: thinking ─────────────────────────────────────────── */
+body.thinking .core {
+  background: var(--orb-think);
+  animation: pulse-think 2s ease-in-out infinite;
+}
+body.thinking .ring-1, body.thinking .ring-2, body.thinking .ring-3 {
+  border-color: rgba(200,200,255,0.2);
+  animation: ring-spin 4s linear infinite;
+}
+
+@keyframes pulse-think {
+  0%, 100% { opacity: 0.7; transform: scale(0.95); }
+  50%       { opacity: 1;   transform: scale(1.05); }
+}
+
+@keyframes ring-spin {
+  from { transform: rotate(0deg) scale(1); }
+  to   { transform: rotate(360deg) scale(1); }
+}
+
+/* ── State: speaking ─────────────────────────────────────────── */
+body.speaking .core {
+  background: var(--orb-speak);
+  animation: pulse-speak 0.8s ease-in-out infinite;
+}
+body.speaking .ring-1 { border-color: rgba(0,212,255,0.3); animation: ring-wave 1s ease-out infinite; }
+body.speaking .ring-2 { border-color: rgba(0,255,148,0.25); animation: ring-wave 1s ease-out infinite 0.2s; }
+body.speaking .ring-3 { border-color: rgba(0,212,255,0.35); animation: ring-wave 1s ease-out infinite 0.4s; }
+
+@keyframes pulse-speak {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(0,212,255,0.3); }
+  50%       { transform: scale(1.1); box-shadow: 0 0 40px rgba(0,255,148,0.4); }
+}
+
+@keyframes ring-expand {
+  0%   { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+@keyframes ring-wave {
+  0%   { transform: scale(1); opacity: 0.9; }
+  100% { transform: scale(1.3); opacity: 0; }
+}
+
+/* ── Status & transcript preview ────────────────────────────── */
+#status {
+  font-size: 14px;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+  text-align: center;
+  min-height: 20px;
+  transition: color 0.3s;
+}
+
+body.listening  #status { color: #6c63ff; }
+body.thinking   #status { color: #a0a0c0; }
+body.speaking   #status { color: #00d4ff; }
+
+#transcript-preview {
+  font-size: 15px;
+  color: var(--text);
+  text-align: center;
+  max-width: 480px;
+  min-height: 22px;
+  font-style: italic;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+/* ── Chat ────────────────────────────────────────────────────── */
+#chat {
+  flex: 1;
+  width: 100%;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--surface-2) transparent;
+}
+
+#messages {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 8px 4px 16px;
+}
+
+.msg {
+  max-width: 88%;
+  padding: 11px 15px;
+  border-radius: 18px;
+  font-size: 14px;
+  line-height: 1.55;
+  word-break: break-word;
+  animation: fadein 0.25s ease;
+}
+
+@keyframes fadein {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.msg.user {
+  align-self: flex-end;
+  background: var(--user-bg);
+  border: 1px solid var(--border);
+  border-bottom-right-radius: 5px;
+  color: var(--text);
+}
+
+.msg.assistant {
+  align-self: flex-start;
+  background: var(--ai-bg);
+  border: 1px solid var(--border);
+  border-bottom-left-radius: 5px;
+  color: var(--text);
+}
+
+.msg.assistant.streaming::after {
+  content: "▋";
+  opacity: 0.7;
+  animation: blink 0.9s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 0.7; }
+  50%       { opacity: 0; }
+}
+
+.msg .tool-note {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.msg .tool-note::before { content: "⚡"; }
+
+/* ── Mic button ──────────────────────────────────────────────── */
+#mic-btn {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: none;
+  background: var(--surface-2);
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 0 0 0 transparent;
+}
+
+#mic-btn svg { width: 26px; height: 26px; }
+
+#mic-btn:hover {
+  background: #23233a;
+  color: var(--text);
+}
+
+#mic-btn:active { transform: scale(0.94); }
+
+body.listening #mic-btn {
+  background: #2d2050;
+  color: #6c63ff;
+  box-shadow: 0 0 0 4px rgba(108,99,255,0.25);
+}
+
+body.thinking #mic-btn {
+  background: var(--surface-2);
+  color: var(--text-muted);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+body.speaking #mic-btn {
+  background: #0d2a28;
+  color: #00d4ff;
+  cursor: pointer;
+}
+
+#mic-hint {
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────────── */
+#chat::-webkit-scrollbar { width: 4px; }
+#chat::-webkit-scrollbar-track { background: transparent; }
+#chat::-webkit-scrollbar-thumb { background: var(--surface-2); border-radius: 4px; }
