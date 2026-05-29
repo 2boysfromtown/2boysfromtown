@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Voice Assistant · 2BFT</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div id="app">
+    <header>
+      <span class="logo">2BFT</span>
+      <span class="model-badge">claude-sonnet-4-6</span>
+    </header>
+
+    <main>
+      <!-- Animated orb -->
+      <div id="orb-container">
+        <div id="orb">
+          <div class="ring ring-1"></div>
+          <div class="ring ring-2"></div>
+          <div class="ring ring-3"></div>
+          <div class="core"></div>
+        </div>
+      </div>
+
+      <!-- Status text -->
+      <p id="status">Tap the mic to start</p>
+
+      <!-- Transcript preview -->
+      <p id="transcript-preview"></p>
+
+      <!-- Chat history -->
+      <div id="chat">
+        <div id="messages"></div>
+      </div>
+    </main>
+
+    <footer>
+      <button id="mic-btn" aria-label="Start listening">
+        <svg id="mic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+          <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+          <line x1="12" y1="19" x2="12" y2="23"/>
+          <line x1="8" y1="23" x2="16" y2="23"/>
+        </svg>
+        <svg id="stop-icon" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+          <rect x="6" y="6" width="12" height="12" rx="2"/>
+        </svg>
+      </button>
+      <p id="mic-hint">Tap to start · Tap again to stop</p>
+    </footer>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
