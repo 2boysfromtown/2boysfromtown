@@ -1,0 +1,70 @@
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">STA<span></span>SHED</div>
+      <p class="footer-tag">Built in a small workshop above a family hardware shop in vaniyambadi. Zero polish. Pure execution. One bag at a time, on purpose.</p>
+      <div style="display:flex;gap:10px;margin-top:24px">
+        <a class="icon-btn" href="https://instagram.com/stashed.in" target="_blank" rel="noopener" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+        <a class="icon-btn" href="https://youtube.com/@stashed" target="_blank" rel="noopener" aria-label="YouTube"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="6" width="20" height="12" rx="3"/><path d="M10 9l5 3-5 3z" fill="currentColor"/></svg></a>
+      </div>
+    </div>
+    <div>
+      <h5>Shop</h5>
+      <ul>
+        <li><a href="/collections/all">All Products</a></li>
+        <li><a href="/collections/backpacks">Core Backpack 20L</a></li>
+        <li><a href="/collections/panels">SwitchLoop&#x2122; Panels</a></li>
+        <li><a href="/collections/patches">Patches</a></li>
+        <li><a href="/collections/accessories">Accessories</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Workshop</h5>
+      <ul>
+        <li><a href="/pages/our-story">Our Story</a></li>
+        <li><a href="/pages/repair-promise">The Repair Promise</a></li>
+        <li><a href="/pages/materials">Materials</a></li>
+        <li><a href="/blogs/journal">Journal</a></li>
+        <li><a href="/pages/press">Press</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Help</h5>
+      <ul>
+        <li><a href="/pages/shipping">Shipping</a></li>
+        <li><a href="/pages/returns">Returns &amp; Refunds</a></li>
+        <li><a href="/pages/size-guide">Size &amp; Fit</a></li>
+        <li><a href="/pages/track-order">Track Order</a></li>
+        <li><a href="/pages/contact">Contact Us</a></li>
+        <li><a href="mailto:hello@stashed.in">hello@stashed.in</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; {{ 'now' | date: '%Y' }} SN BAGS &middot; 2BFT &middot; BUILT IN INDIA</span>
+    <span class="pay"><span>UPI</span><span>VISA</span><span>MASTERCARD</span><span>RAZORPAY</span><span>COD</span></span>
+    <a href="/policies/privacy-policy" style="color:var(--ink-mute)">Privacy</a>
+    <a href="/policies/terms-of-service" style="color:var(--ink-mute)">Terms</a>
+    <a href="/policies/refund-policy" style="color:var(--ink-mute)">Refunds</a>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "instagram_url",
+      "label": "Instagram URL",
+      "default": "https://instagram.com/stashed.in"
+    },
+    {
+      "type": "text",
+      "id": "youtube_url",
+      "label": "YouTube URL",
+      "default": "https://youtube.com/@stashed"
+    }
+  ]
+}
+{% endschema %}

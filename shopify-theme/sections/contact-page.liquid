@@ -1,0 +1,132 @@
+<section class="section" style="padding:72px 0;border-bottom:1px solid var(--line)">
+  <div style="max-width:1480px;margin:0 auto;padding:0 28px">
+
+    <div class="section-head">
+      <span class="section-num">// HELP / GET IN TOUCH</span>
+      <h1 class="display section-title" style="font-size:clamp(48px,6vw,96px)">Talk to<br>a human.</h1>
+      <span class="section-kicker">WE READ EVERY MESSAGE. A REAL PERSON IN VANIYAMBADI WRITES BACK &mdash; USUALLY WITHIN 12 HOURS.</span>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:56px;align-items:start" class="contact-grid">
+
+      {%- comment -%} LEFT COLUMN: INFO {%- endcomment -%}
+      <div style="display:flex;flex-direction:column;gap:40px">
+
+        <div style="border-top:1px solid var(--line);padding-top:24px">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-mute);display:block;margin-bottom:12px">// EMAIL</span>
+          <a href="mailto:hello@stashed.in" style="font-size:20px;color:var(--ink);border-bottom:1px solid var(--orange);padding-bottom:2px">hello@stashed.in</a>
+        </div>
+
+        <div style="border-top:1px solid var(--line);padding-top:24px">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-mute);display:block;margin-bottom:12px">// PHONE</span>
+          <p style="font-size:17px;color:var(--ink-dim);line-height:1.6">Workshop hours<br>10am &ndash; 7pm IST</p>
+        </div>
+
+        <div style="border-top:1px solid var(--line);padding-top:24px">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-mute);display:block;margin-bottom:12px">// LOCATION</span>
+          <p style="font-size:17px;color:var(--ink-dim);line-height:1.6">Vaniyambadi, Tamil Nadu<br>India</p>
+        </div>
+
+        <div style="border-top:1px solid var(--line);padding-top:24px">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-mute);display:block;margin-bottom:16px">// SOCIAL</span>
+          <div style="display:flex;gap:16px">
+            <a href="https://instagram.com/stashed.in" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-dim);transition:border-color .15s,color .15s" onmouseover="this.style.borderColor='var(--ink)';this.style.color='var(--ink)'" onmouseout="this.style.borderColor='var(--line)';this.style.color='var(--ink-dim)'">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+              Instagram
+            </a>
+            <a href="https://youtube.com/@stashed" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-dim);transition:border-color .15s,color .15s" onmouseover="this.style.borderColor='var(--ink)';this.style.color='var(--ink)'" onmouseout="this.style.borderColor='var(--line)';this.style.color='var(--ink-dim)'">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg>
+              YouTube
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      {%- comment -%} RIGHT COLUMN: FORM {%- endcomment -%}
+      <div style="border:1px solid var(--line);padding:40px;background:var(--bg-2)">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-mute);display:block;margin-bottom:32px">// SEND A MESSAGE</span>
+
+        {% form 'contact' %}
+          {% if form.posted_successfully? %}
+            <div style="padding:20px;border:1px solid var(--green);color:var(--green);font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.06em;margin-bottom:24px">
+              &#x2713; Message sent. We'll get back to you within 12 hours.
+            </div>
+          {% endif %}
+
+          {% if form.errors %}
+            <div style="padding:20px;border:1px solid var(--orange);color:var(--orange);font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.06em;margin-bottom:24px">
+              {{ form.errors | default_errors }}
+            </div>
+          {% endif %}
+
+          <div style="display:flex;flex-direction:column;gap:20px">
+            <div>
+              <label for="contact-name" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute);display:block;margin-bottom:8px">Name</label>
+              <input type="text" id="contact-name" name="contact[name]" placeholder="Your name" required
+                style="width:100%;height:52px;padding:0 16px;background:var(--bg);border:1px solid var(--line);color:var(--ink);font-family:'Space Grotesk',sans-serif;font-size:15px;outline:none;transition:border-color .15s"
+                onfocus="this.style.borderColor='var(--orange)'" onblur="this.style.borderColor='var(--line)'">
+            </div>
+
+            <div>
+              <label for="contact-email" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute);display:block;margin-bottom:8px">Email</label>
+              <input type="email" id="contact-email" name="contact[email]" placeholder="you@email.com" required
+                style="width:100%;height:52px;padding:0 16px;background:var(--bg);border:1px solid var(--line);color:var(--ink);font-family:'Space Grotesk',sans-serif;font-size:15px;outline:none;transition:border-color .15s"
+                onfocus="this.style.borderColor='var(--orange)'" onblur="this.style.borderColor='var(--line)'">
+            </div>
+
+            <div>
+              <label for="contact-phone" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute);display:block;margin-bottom:8px">Phone</label>
+              <input type="tel" id="contact-phone" name="contact[phone]" placeholder="+91 00000 00000"
+                style="width:100%;height:52px;padding:0 16px;background:var(--bg);border:1px solid var(--line);color:var(--ink);font-family:'Space Grotesk',sans-serif;font-size:15px;outline:none;transition:border-color .15s"
+                onfocus="this.style.borderColor='var(--orange)'" onblur="this.style.borderColor='var(--line)'">
+            </div>
+
+            <div>
+              <label for="contact-subject" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute);display:block;margin-bottom:8px">Subject</label>
+              <select id="contact-subject" name="contact[subject]"
+                style="width:100%;height:52px;padding:0 16px;background:var(--bg);border:1px solid var(--line);color:var(--ink);font-family:'Space Grotesk',sans-serif;font-size:15px;outline:none;appearance:none;cursor:pointer;transition:border-color .15s"
+                onfocus="this.style.borderColor='var(--orange)'" onblur="this.style.borderColor='var(--line)'">
+                <option value="">Select a topic</option>
+                <option value="Order Question">Order Question</option>
+                <option value="Shipping & Delivery">Shipping &amp; Delivery</option>
+                <option value="Returns & Exchange">Returns &amp; Exchange</option>
+                <option value="Repair Request">Repair Request</option>
+                <option value="SwitchPanel / Panels">SwitchPanel / Panels</option>
+                <option value="Wholesale / B2B">Wholesale / B2B</option>
+                <option value="Press / Media">Press / Media</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="contact-message" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute);display:block;margin-bottom:8px">Message</label>
+              <textarea id="contact-message" name="contact[body]" placeholder="Tell us what's up..." rows="6" required
+                style="width:100%;padding:16px;background:var(--bg);border:1px solid var(--line);color:var(--ink);font-family:'Space Grotesk',sans-serif;font-size:15px;outline:none;resize:vertical;min-height:140px;transition:border-color .15s"
+                onfocus="this.style.borderColor='var(--orange)'" onblur="this.style.borderColor='var(--line)'"></textarea>
+            </div>
+
+            <button type="submit" class="atc" style="width:100%;margin-top:8px">
+              Send message &rarr;
+            </button>
+          </div>
+        {% endform %}
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  @media(max-width:768px){
+    .contact-grid{grid-template-columns:1fr !important;gap:40px !important}
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Contact Page",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  {%- if template.name == 'index' -%}
+    <title>STASHED — India's First Modular Tech Backpack | SwiftPanel™ System</title>
+  {%- elsif page_title -%}
+    <title>{{ page_title }} — STASHED</title>
+  {%- else -%}
+    <title>STASHED — Modular Tech Backpacks India</title>
+  {%- endif -%}
+
+  {%- if page_description -%}
+    <meta name="description" content="{{ page_description | escape }}">
+  {%- elsif template.name == 'index' -%}
+    <meta name="description" content="India's first modular tech backpack brand. Stashed Drop 001 features the SwiftPanel™ swappable panel system — built for founders, creators, and professionals who carry gear daily. Shop now.">
+  {%- else -%}
+    <meta name="description" content="Shop Stashed — India's first modular tech backpack with SwiftPanel™ swappable panels. Built for daily carry.">
+  {%- endif -%}
+
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="{{ canonical_url }}">
+  <link rel="icon" type="image/png" href="{{ 'stashed-logo.png' | asset_url }}">
+
+  <!-- Checkout performance: preconnect to Shopify checkout -->
+  <link rel="preconnect" href="https://checkout.shopify.com">
+  <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="STASHED">
+  <meta property="og:type" content="{% if template.name == 'product' %}product{% elsif template.name == 'article' %}article{% else %}website{% endif %}">
+  {%- if template.name == 'index' -%}
+    <meta property="og:title" content="STASHED — India's First Modular Tech Backpack">
+    <meta property="og:description" content="India's first modular tech backpack brand. SwiftPanel™ swappable panel system. Shop Drop 001.">
+  {%- else -%}
+    <meta property="og:title" content="{{ page_title | escape }} — STASHED">
+    <meta property="og:description" content="{% if page_description %}{{ page_description | escape }}{% else %}Shop Stashed — India's first modular tech backpack.{% endif %}">
+  {%- endif -%}
+  <meta property="og:url" content="{{ canonical_url }}">
+  {%- if template.name == 'product' and product.featured_image -%}
+    <meta property="og:image" content="{{ product.featured_image | image_url: width: 1200 }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+    <meta property="og:image:alt" content="{{ product.featured_image.alt | default: product.title | escape }}">
+    <meta property="product:price:amount" content="{{ product.price | money_without_currency }}">
+    <meta property="product:price:currency" content="{{ shop.currency }}">
+  {%- else -%}
+    <meta property="og:image" content="{{ 'stashed-logo.png' | asset_url | prepend: 'https:' }}">
+    <meta property="og:image:alt" content="STASHED — India's First Modular Tech Backpack">
+  {%- endif -%}
+
+  <!-- Twitter / X Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@stashedin">
+  {%- if template.name == 'index' -%}
+    <meta name="twitter:title" content="STASHED — India's First Modular Tech Backpack">
+    <meta name="twitter:description" content="India's first modular tech backpack brand. SwiftPanel™ swappable panel system. Shop Drop 001.">
+  {%- else -%}
+    <meta name="twitter:title" content="{{ page_title | escape }} — STASHED">
+    <meta name="twitter:description" content="{% if page_description %}{{ page_description | escape }}{% else %}Shop Stashed — modular tech backpacks India.{% endif %}">
+  {%- endif -%}
+  {%- if template.name == 'product' and product.featured_image -%}
+    <meta name="twitter:image" content="{{ product.featured_image | image_url: width: 1200 }}">
+    <meta name="twitter:image:alt" content="{{ product.featured_image.alt | default: product.title | escape }}">
+  {%- else -%}
+    <meta name="twitter:image" content="{{ 'stashed-logo.png' | asset_url | prepend: 'https:' }}">
+    <meta name="twitter:image:alt" content="STASHED — Modular Tech Backpacks India">
+  {%- endif -%}
+
+  <!-- Organization Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Stashed",
+    "alternateName": "STASHED",
+    "url": "{{ shop.url }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ 'stashed-logo.png' | asset_url | prepend: 'https:' }}",
+      "width": 400,
+      "height": 100
+    },
+    "description": "India's first modular tech backpack brand, founded by 2 Boys From Town (2BFT) in Vaniyambadi, Tamil Nadu. Featuring the SwiftPanel™ swappable panel system.",
+    "foundingDate": "2026",
+    "foundingLocation": {
+      "@type": "Place",
+      "name": "Vaniyambadi, Tamil Nadu, India"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Vaniyambadi",
+      "addressRegion": "Tamil Nadu",
+      "addressCountry": "IN"
+    },
+    "email": "hello@stashed.in",
+    "sameAs": [
+      "https://instagram.com/stashed.co.in",
+      "https://www.facebook.com/stashed.co.in"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer support",
+      "email": "hello@stashed.in",
+      "availableLanguage": ["English", "Hindi", "Tamil"]
+    }
+  }
+  </script>
+
+  <!-- WebSite Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Stashed",
+    "url": "{{ shop.url }}",
+    "description": "India's first modular tech backpack brand.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "{{ shop.url }}/search?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  {%- if template.name == 'index' -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "{{ shop.url }}/#webpage",
+    "url": "{{ shop.url }}",
+    "name": "STASHED — India's First Modular Tech Backpack",
+    "description": "India's first modular tech backpack brand. SwiftPanel™ swappable panel system. Shop Drop 001.",
+    "inLanguage": "en-IN",
+    "isPartOf": { "@id": "{{ shop.url }}/#website" }
+  }
+  </script>
+  {%- endif -%}
+
+  {{ content_for_header }}
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  {{ 'storefront.css' | asset_url | stylesheet_tag }}
+  {{ 'checkout-optimise.css' | asset_url | stylesheet_tag }}
+</head>
+<body class="has-buybar">
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close" id="menuClose" aria-label="Close menu">&#x2715;</button>
+  <nav aria-label="Mobile navigation">
+    <a href="/collections/all" class="or">Shop Drop 01 <span class="ix">// 01</span></a>
+    <a href="/pages/switchpanel">SwitchPanel&#x2122; <span class="ix">// 02</span></a>
+    <a href="/collections/patches">Patches <span class="ix">// 03</span></a>
+    <a href="/pages/our-story">Workshop <span class="ix">// 04</span></a>
+    <a href="/blogs/journal">Journal <span class="ix">// 05</span></a>
+    <a href="/account">Account <span class="ix">// 06</span></a>
+  </nav>
+  <div class="foot">
+    <span>&#x2605; <strong>98 / 500 LEFT</strong> &middot; DROP 01</span>
+    <span>HELLO@STASHED.IN</span>
+    <span>WORKSHOP &middot; VNB, IN</span>
+  </div>
+</div>
+
+<div class="announce" aria-label="Announcements" role="marquee">
+  <div class="announce-track">
+    <span><i class="dot" aria-hidden="true"></i> DROP 01 &mdash; FOUNDER&#x27;S BUNDLE LIVE NOW</span>
+    <span><i class="dot" aria-hidden="true"></i> FREE SHIPPING ON ORDERS &#x20B9;2,000+</span>
+    <span><i class="dot" aria-hidden="true"></i> 98 / 500 UNITS REMAINING</span>
+    <span><i class="dot" aria-hidden="true"></i> SHIPS FROM A WORKSHOP IN PUNE</span>
+    <span><i class="dot" aria-hidden="true"></i> DROP 01 &mdash; FOUNDER&#x27;S BUNDLE LIVE NOW</span>
+    <span><i class="dot" aria-hidden="true"></i> FREE SHIPPING ON ORDERS &#x20B9;2,000+</span>
+    <span><i class="dot" aria-hidden="true"></i> 98 / 500 UNITS REMAINING</span>
+    <span><i class="dot" aria-hidden="true"></i> SHIPS FROM A WORKSHOP IN PUNE</span>
+  </div>
+</div>
+
+<nav class="nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <div class="nav-left">
+      <a class="nav-link{% if template.name == 'collection' or template.name == 'product' %} active{% endif %}" href="/collections/all">Shop</a>
+      <a class="nav-link" href="/pages/switchpanel">SwitchPanel&#x2122;</a>
+      <a class="nav-link{% if template.name == 'collection' and collection.handle == 'patches' %} active{% endif %}" href="/collections/patches">Patches</a>
+      <a class="nav-link" href="/pages/our-story">Workshop</a>
+      <a class="nav-link{% if template.name == 'article' or template.name == 'blog' %} active{% endif %}" href="/blogs/journal">Journal</a>
+    </div>
+    <a class="logo-mark" href="{{ routes.root_url }}" aria-label="STASHED — Home">
+      <img src="{{ 'stashed-logo.png' | asset_url }}" alt="STASHED — India's First Modular Tech Backpack" width="120" height="32" loading="eager">
+      <span class="tag">EST. 2026 / vnb</span>
+    </a>
+    <div class="nav-right">
+      <button class="menu-btn" id="menuOpen" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <a href="{{ routes.search_url }}" class="icon-btn" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      </a>
+      <a href="{{ routes.account_url }}" class="icon-btn" aria-label="My account">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+      </a>
+      <button class="cart-btn" id="cartToggle" aria-label="Open cart, {{ cart.item_count }} items">
+        Cart <span class="count" aria-live="polite">{{ cart.item_count }}</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main id="main-content">
+  {{ content_for_layout }}
+</main>
+
+<div class="cart-drawer" id="cartDrawer" aria-label="Shopping cart" role="dialog" aria-modal="true">
+  <div class="cart-drawer-overlay" id="cartOverlay"></div>
+  <div class="cart-drawer-panel">
+    <div class="cart-drawer-header">
+      <span class="cart-drawer-title">YOUR CART</span>
+      <button class="cart-drawer-close" id="cartClose" aria-label="Close cart">&#x2715;</button>
+    </div>
+    <div class="cart-drawer-body" id="cartBody">
+      {% if cart.item_count == 0 %}
+        <div class="cart-empty">
+          <span class="cart-empty-icon" aria-hidden="true">&#x1F6D2;</span>
+          <p class="cart-empty-text">Your cart is empty</p>
+          <a href="/collections/all" class="btn primary" style="width:100%;height:52px;font-size:11px">Shop Drop 01 &rarr;</a>
+        </div>
+      {% else %}
+        {% for item in cart.items %}
+        <div class="cart-item" data-key="{{ item.key }}">
+          <a href="{{ item.url }}">
+            {% if item.image %}
+              <img src="{{ item.image | image_url: width: 120 }}" alt="{{ item.title }}" class="cart-item-img" width="80" height="80" loading="lazy">
+            {% else %}
+              <div class="cart-item-img" style="background:var(--bg-2);width:80px;height:80px" aria-hidden="true"></div>
+            {% endif %}
+          </a>
+          <div class="cart-item-info">
+            <a href="{{ item.url }}" class="cart-item-title">{{ item.product.title }}</a>
+            {% unless item.variant.title == 'Default Title' %}
+              <span class="cart-item-variant">{{ item.variant.title }}</span>
+            {% endunless %}
+            <div class="cart-item-row">
+              <div class="qty cart-qty">
+                <button class="qty-change" data-key="{{ item.key }}" data-dir="down" aria-label="Decrease quantity of {{ item.title }}">&minus;</button>
+                <span class="qty-val" aria-live="polite">{{ item.quantity }}</span>
+                <button class="qty-change" data-key="{{ item.key }}" data-dir="up" aria-label="Increase quantity of {{ item.title }}">+</button>
+              </div>
+              <span class="cart-item-price">{{ item.final_line_price | money }}</span>
+            </div>
+          </div>
+          <button class="cart-item-remove" data-key="{{ item.key }}" aria-label="Remove {{ item.title }} from cart">&times;</button>
+        </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+    {% if cart.item_count > 0 %}
+    <div class="cart-drawer-footer">
+      <div class="cart-subtotal">
+        <span>Subtotal</span>
+        <span class="cart-subtotal-price">{{ cart.total_price | money }}</span>
+      </div>
+      <span class="cart-shipping-note">Shipping &amp; taxes calculated at checkout</span>
+      <a href="{{ routes.cart_url }}/checkout" class="atc" style="width:100%;height:56px;text-decoration:none" aria-label="Proceed to checkout">Checkout &rarr;</a>
+      <a href="{{ routes.cart_url }}" style="display:block;text-align:center;margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-dim)">View full cart</a>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+{% if template.name == 'index' %}
+<div class="mobile-buybar" aria-label="Quick buy">
+  <div class="lbl">
+    <span class="name">DROP 01 &middot; 20L</span>
+    <span class="px">&#x20B9;1,899<s>&#x20B9;2,640</s></span>
+  </div>
+  <button class="cta atc">Add to cart &rarr;</button>
+</div>
+{% endif %}
+
+<script src="{{ 'storefront.js' | asset_url }}" defer></script>
+</body>
+</html>
