@@ -10,13 +10,21 @@
 
 ## What we do
 
-- **2BFT.studio** — websites and digital products for clients. **2 sites delivered, $30,000+** in web work, all remote from a small town.
+- **2BFT.studio** — websites and digital products for clients. **₹30,000 from our first 2 delivered sites**, all remote from a small town.
 - **Brand animations** — short animated reels for brands (around ₹500–600 each), built with our own open-source motion tools.
 - **2BFT Academy** — live workshops and hackathons. **250+ builders** so far. Our course, *Claude + Magic Skills* (₹999), is at [2bft.in](https://2bft.in).
+- **Stashed** — a tech backpack **designed with AI**, built with SMB bag factories in Chennai, marketed with AI from a small town. **60 pieces sold in 6 months.**
 
-The honest, full version of how we earn from a small town: **[the 2BFT Playbook](https://github.com/2boysfromtown/2bft-playbook)**.
+**₹6 lakh+ tracked in our first year.** The honest, full version: **[the 2BFT Playbook](https://github.com/2boysfromtown/2bft-playbook)**.
 
-See [`projects/`](./projects) for one-pagers and [`templates/`](./templates) for starter scaffolds we use ourselves.
+---
+
+## The 2BFT family
+
+- **[2bft.in](https://2bft.in)** — the Academy and courses
+- **2bft.studio** — client websites and digital products
+- **2bft.gaming.tn** — gaming & esports for tier-3 cities, towns and villages *(launched on our 1-year birthday)*
+- **2bft.cartoons** — **Talking Radio, Season 1**: 5 episodes in English, Hindi and Tamil, made by one author with a single Claude and no extra cost (offline + online models). 🎧 [Watch](https://2boysfromtown.github.io/thinking-radio/)
 
 ---
 
@@ -29,13 +37,14 @@ Opened up straight from our own paid work, so you can see exactly how the delive
 | [indic-voice-clone](https://github.com/2boysfromtown/indic-voice-clone) | Clone your own voice in Tamil, Hindi and English — offline, on your own GPU |
 | [photo-to-tamil-ad](https://github.com/2boysfromtown/photo-to-tamil-ad) | One product photo → a finished 20-second Tamil video ad |
 | [hyperframes-motion](https://github.com/2boysfromtown/hyperframes-motion) | After Effects-style motion graphics in plain HTML + GSAP |
+| [thinking-radio](https://github.com/2boysfromtown/thinking-radio) | The Talking Radio cartoon series, built with Claude |
 | [premortem-run](https://github.com/2boysfromtown/premortem-run) | Local-first launch-rehearsal engine — test your site before going live |
 
 More at [github.com/2boysfromtown](https://github.com/2boysfromtown?tab=repositories).
 
 ---
 
-## Brands we run
+## Brands & ventures
 
 - **Stashed** — made-in-India tech backpacks · [@getstasheddd](https://instagram.com/getstasheddd)
 - **Maruthi Jewellers** — our family business
